@@ -27,6 +27,7 @@ namespace s21 {
   public:
     int GraphSize();
     int &operator()(int row, int col);
+    void PrintMatrix();
 
 
     void FromFileDot(const std::string& filepath);

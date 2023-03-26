@@ -104,6 +104,9 @@ int& Graph::operator()(int row, int col) {
   return matrix_(row,col);
 }
 
+void Graph::PrintMatrix() {
+  matrix_.Print();
+}
 
 
 

@@ -19,11 +19,11 @@ namespace s21 {
 
 //    Matrix<int> visited_matrix;
 //    std::stack<int> st;
-//    std::vector<int> visited;
+
 
   public:
     std::vector<int> depthFirstSearch(Graph &graph, int startVertex);
-//    std::vector<int> breadthFirstSearch(Graph &graph, int startVertex);
+    std::vector<int> breadthFirstSearch(Graph &graph, int startVertex);
 
 //    int getShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2);
 //    void getShortestPathsBetweenAllVertices(Graph &graph);
@@ -31,7 +31,7 @@ namespace s21 {
 
 
   private:
-    void depthSearch(Graph &graph, int vertex);
+    void depthSearch(Graph &graph, int vertex, std::vector<int>& visited);
   };
 
 
