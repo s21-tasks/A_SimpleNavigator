@@ -29,7 +29,20 @@ void GraphAlgorithms::depthSearch(Graph &graph, int vertex, std::vector<int>& vi
 }
 
 std::vector<int> GraphAlgorithms::breadthFirstSearch(Graph &graph, int startVertex) {
-
+  std::queue<int> q;
+  std::vector<int> visited;
+  q.push(startVertex);
+  while (!q.empty()) {
+    int v = q.front();
+    q.pop();
+    if (std::find(visited.begin(), visited.end(),v) == visited.end())
+      visited.push_back(v);
+    for (int i = 0; i < graph.GraphSize(); ++i) {
+        if (graph(v,i) && std::find(visited.begin(), visited.end(),i) == visited.end())
+          q.push(i);
+    }
+  }
+  return visited;
 }
 
 

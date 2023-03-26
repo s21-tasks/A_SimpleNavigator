@@ -9,6 +9,7 @@
 #include <fstream>
 #include <set>
 #include <map>
+#include <queue>
 #include <iosfwd>
 #include <sstream>
 #include "maykitbo_matrix/src/matrix.h"
