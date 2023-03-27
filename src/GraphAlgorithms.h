@@ -25,7 +25,7 @@ namespace s21 {
     std::vector<int> depthFirstSearch(Graph &graph, int startVertex);
     std::vector<int> breadthFirstSearch(Graph &graph, int startVertex);
 
-//    int getShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2);
+    int getShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2);
 //    void getShortestPathsBetweenAllVertices(Graph &graph);
 //    TsmResult solveTravelingSalesmanProblem(Graph &graph);
 
