@@ -69,6 +69,25 @@ int GraphAlgorithms::getShortestPathBetweenVertices(Graph &graph, int vertex1, i
   return path_size[vertex2];
 }
 
+Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph &graph) {
+  Matrix<int> solve(graph.GetMatrix());
+  for (int i = 0; i < solve.GetCols(); ++i) {
+    for (int j = 0; j < solve.GetCols(); ++j) {
+      if (i != j && !solve(i,j))
+        solve(i,j) = MAX_GRAPH;
+    }
+  }
+
+  for (int k = 0; k < solve.GetCols(); ++k) {
+    for (int i = 0; i < solve.GetCols(); ++i) {
+      for (int j = 0; j < solve.GetCols(); ++j) {
+        solve(i,j) = std::min(solve(i,j), solve(i,k) + solve(k,j));
+      }
+    }
+  }
+  return solve;
+}
+
 
 
 } // s21

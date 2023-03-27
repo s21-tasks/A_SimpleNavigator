@@ -14,6 +14,7 @@
 #include <sstream>
 #include "maykitbo_matrix/src/matrix.h"
 
+#define MAX_GRAPH INT_MAX/2-1
 
 namespace s21 {
 
@@ -29,6 +30,7 @@ namespace s21 {
     int GraphSize();
     int &operator()(int row, int col);
     void PrintMatrix();
+    Matrix<int> GetMatrix();
 
 
     void FromFileDot(const std::string& filepath);

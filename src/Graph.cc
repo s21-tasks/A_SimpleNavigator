@@ -108,6 +108,10 @@ void Graph::PrintMatrix() {
   matrix_.Print();
 }
 
+Matrix<int> Graph::GetMatrix() {
+  return matrix_;
+}
+
 
 
 
