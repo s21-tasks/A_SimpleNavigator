@@ -1,7 +1,3 @@
-//
-// Created by Иван Захаров on 23.03.2023.
-//
-
 #include "Graph.h"
 
 using std::string, std::vector;
@@ -108,7 +104,7 @@ void Graph::PrintMatrix() {
   matrix_.Print();
 }
 
-Matrix<int> Graph::GetMatrix() {
+Matrix<int>& Graph::GetMatrix() {
   return matrix_;
 }
 

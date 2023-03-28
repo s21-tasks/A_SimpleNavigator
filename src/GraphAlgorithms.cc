@@ -1,7 +1,3 @@
-//
-// Created by Иван Захаров on 25.03.2023.
-//
-
 #include "GraphAlgorithms.h"
 
 namespace s21 {
@@ -31,14 +27,18 @@ void GraphAlgorithms::depthSearch(Graph &graph, int vertex, std::vector<int>& vi
 std::vector<int> GraphAlgorithms::breadthFirstSearch(Graph &graph, int startVertex) {
   std::queue<int> q;
   std::vector<int> visited;
+  std::vector<bool> visited_bool(graph.GraphSize(), false);
   q.push(startVertex);
+  visited_bool[startVertex] = true;
   while (!q.empty()) {
     int v = q.front();
     q.pop();
-    if (std::find(visited.begin(), visited.end(),v) == visited.end())
+    if (!visited_bool[v]) {
       visited.push_back(v);
+      visited_bool[v] = true;
+    }
     for (int i = 0; i < graph.GraphSize(); ++i) {
-        if (graph(v,i) && std::find(visited.begin(), visited.end(),i) == visited.end())
+        if (graph(v,i) && !visited_bool[i])
           q.push(i);
     }
   }
@@ -60,8 +60,8 @@ int GraphAlgorithms::getShortestPathBetweenVertices(Graph &graph, int vertex1, i
       }
     }
     for (int i = 0; i < graph.GraphSize(); ++i) {
-      if (graph(vert_index,i)>0 && path_size[i] > path_size[vert_index]+graph(vert_index,i)) {
-        path_size[i] = path_size[vert_index]+graph(vert_index,i);
+      if (graph(vert_index,i)>0) {
+        path_size[i] = std::min(path_size[i], path_size[vert_index]+graph(vert_index,i));
       }
     }
     visited[vert_index] = true;
