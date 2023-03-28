@@ -47,7 +47,7 @@ namespace s21 {
 
     void FromFileDot(const std::string& filepath);
     void LoadGraphFromFile(const std::string& filename);
-    void exportGraphToDot(const std::string &filename, const std::string &graphname);
+    void exportGraphToDot(const std::string &filename);
     void GraphToFile(const std::string& filename);
 
   private:
@@ -56,7 +56,7 @@ namespace s21 {
     void RandomDirected(int size, float zero_probability, int max_weight);
     void RandomUndirected(int size, float zero_probability, int max_weight);
 
-    std::string Graph::CellName(int n);
+    std::string CellName(int n);
   };
 
 } // s21

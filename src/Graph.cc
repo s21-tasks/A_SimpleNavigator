@@ -74,7 +74,7 @@ void Graph::GraphToFile(const std::string& filename) {
   }
 }
 
-void Graph::exportGraphToDot(const std::string filename) {
+void Graph::exportGraphToDot(const std::string &filename) {
   return;
 }
 
