@@ -1,12 +1,106 @@
-//
-// Created by Иван Захаров on 23.03.2023.
-//
-
 #include "Graph.h"
 
 using std::string, std::vector;
 
 namespace s21 {
+
+Graph::Graph(bool directed, int size, float zero_probability, int max_weight) :
+    directed_(directed), matrix_(size) {
+  directed_ ? RandomDirected(size, zero_probability, max_weight) :
+              RandomUndirected(size, zero_probability, max_weight);
+}
+
+std::string Graph::CellName(int n) {
+  std::string name = "";
+  do {
+      name = char('A' + (n % 26)) + name;
+      n /= 26;
+  } while (n > 0);
+  return name;
+}
+
+void Graph::RandomDirected(int size, float zero_probability, int max_weight) {
+  for (int k = 0; k < size; ++k) {
+    vertices_.emplace(CellName(k), k);
+    for (int g = 0; g < size; ++g) {
+      if (k != g && !Random::Bool(zero_probability)) {
+        matrix_(k, g) = Random::Int(1, max_weight);
+      }
+    }
+  }
+}
+
+void Graph::RandomUndirected(int size, float zero_probability, int max_weight) {
+  for (int k = 0; k < size; ++k) {
+    vertices_.emplace(CellName(k), k);
+    for (int g = k+1; g < size; ++g) {
+      if (!Random::Bool(zero_probability)) {
+        matrix_(k, g) = matrix_(g, k) = Random::Int(1, max_weight);
+      }
+    }
+  }
+}
+
+
+void Graph::LoadGraphFromFile(const std::string& filename) {
+  std::ifstream file(filename, std::ios::in);
+  int size = 0;
+  file >> size;
+  if (size == 0) {
+    throw std::invalid_argument("invalid file!");
+  }
+  matrix_ = Matrix<int>(size, size, -1);
+  for (int k = 0; k < size; ++k) {
+    for (int g = 0; g < size; ++g) {
+      file >> matrix_(k, g);
+      if (matrix_(k, g) < 0) {
+        throw std::invalid_argument("invalid file!");
+      }
+    }
+    if (file.peek() != '\n' && file.peek() != EOF) {
+      throw std::invalid_argument("invalid file!");
+    }
+  }
+}
+
+void Graph::GraphToFile(const std::string& filename) {
+  std::ofstream file(filename);
+  const int size = matrix_.GetCols();
+  file << size << "\n";
+  for (int k = 0; k < size; ++k) {
+    for (int g = 0; g < size; ++g) {
+      file << matrix_[k][g] << (g == size-1 ? '\n' : '\t');
+    }
+  }
+}
+
+void Graph::exportGraphToDot(const std::string &filename) {
+  return;
+}
+
+int Graph::GraphSize() {
+  return matrix_.GetCols();
+}
+
+int& Graph::operator()(int row, int col) {
+  return matrix_(row,col);
+}
+
+void Graph::PrintMatrix() {
+  matrix_.Print();
+}
+
+Matrix<int>& Graph::GetMatrix() {
+  return matrix_;
+}
+
+
+
+
+
+
+
+
 
 vector<string> Graph::SplitStr(std::string const &str, const char delim = ' ') {
   vector <std::string> out;
@@ -75,49 +169,6 @@ vector<string> Graph::SplitStr(std::string const &str, const char delim = ' ') {
     }
   }
 }
-
-void Graph::LoadGraphFromFile(const std::string& filename) {
-  std::ifstream in(filename, std::ios::in);
-  string line;
-  getline(in, line);
-  int size = std::atoi(line.c_str());
-  matrix_ = Matrix<int>(size, size);
-  int i = 0;
-  while (getline(in, line)) {
-    vector<string> w = SplitStr(line);
-    for (int j = 0; j < w.size(); ++j) {
-      matrix_(i,j) = std::atoi(w[j].c_str());
-    }
-    ++i;
-  }
-}
-
-void Graph::exportGraphToDot(const std::string filename) {
-  return;
-}
-
-int Graph::GraphSize() {
-  return matrix_.GetCols();
-}
-
-int& Graph::operator()(int row, int col) {
-  return matrix_(row,col);
-}
-
-void Graph::PrintMatrix() {
-  matrix_.Print();
-}
-
-Matrix<int> Graph::GetMatrix() {
-  return matrix_;
-}
-
-
-
-
-
-
-
 
 
 

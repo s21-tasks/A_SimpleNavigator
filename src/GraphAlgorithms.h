@@ -1,7 +1,3 @@
-//
-// Created by Иван Захаров on 25.03.2023.
-//
-
 #ifndef SIMPLENAVIGATOR_GRAPHALGORITHMS_H
 #define SIMPLENAVIGATOR_GRAPHALGORITHMS_H
 
@@ -17,10 +13,6 @@ namespace s21 {
 
 
   class GraphAlgorithms {
-
-//    Matrix<int> visited_matrix;
-//    std::stack<int> st;
-
 
   public:
     std::vector<int> depthFirstSearch(Graph &graph, int startVertex);

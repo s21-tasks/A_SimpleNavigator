@@ -1,5 +1,3 @@
-
-
 #include "GraphAlgorithms.h"
 
 namespace s21 {
@@ -19,7 +17,7 @@ void GraphAlgorithms::depthSearch(Graph &graph, int vertex, std::vector<int>& vi
       st.push(i);
   }
   while (!st.empty()) {
-    if (std::find(visited.begin(), visited.end(),st.top()) == visited.end()) {
+    if (std::find(visited.begin(), visited.end(), st.top()) == visited.end()) {
       depthSearch(graph, st.top(), visited);
     }
     st.pop();
@@ -29,14 +27,18 @@ void GraphAlgorithms::depthSearch(Graph &graph, int vertex, std::vector<int>& vi
 std::vector<int> GraphAlgorithms::breadthFirstSearch(Graph &graph, int startVertex) {
   std::queue<int> q;
   std::vector<int> visited;
+  std::vector<bool> visited_bool(graph.GraphSize(), false);
   q.push(startVertex);
+  visited_bool[startVertex] = true;
   while (!q.empty()) {
     int v = q.front();
     q.pop();
-    if (std::find(visited.begin(), visited.end(),v) == visited.end())
+    if (!visited_bool[v]) {
       visited.push_back(v);
+      visited_bool[v] = true;
+    }
     for (int i = 0; i < graph.GraphSize(); ++i) {
-        if (graph(v,i) && std::find(visited.begin(), visited.end(),i) == visited.end())
+        if (graph(v,i) && !visited_bool[i])
           q.push(i);
     }
   }
@@ -58,8 +60,8 @@ int GraphAlgorithms::getShortestPathBetweenVertices(Graph &graph, int vertex1, i
       }
     }
     for (int i = 0; i < graph.GraphSize(); ++i) {
-      if (graph(vert_index,i)>0 && path_size[i] > path_size[vert_index]+graph(vert_index,i)) {
-        path_size[i] = path_size[vert_index]+graph(vert_index,i);
+      if (graph(vert_index,i)>0) {
+        path_size[i] = std::min(path_size[i], path_size[vert_index]+graph(vert_index,i));
       }
     }
     visited[vert_index] = true;
@@ -85,77 +87,6 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph &graph) {
   }
   return solve;
 }
-
-float RandomNumber() {
-  float ans = float(rand()) / float(RAND_MAX);
-  srand(ans * RAND_MAX);
-  return ans;
-}
-
-int SumVector(std::vector<int>& v) {
-  int ans = 0;
-  for (nt i = 0; i < v.size(); ++i) {
-    ans += v[i];
-  }
-  return ans;
-}
-
-void FeromonsEvaporation(std::vector<float>& f) {
-  const q = 0.64;
-  for (int i = 0; i < f.size(); ++i) {
-    f[i] *= 0.64;
-  }
-}
-
-TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(Graph &graph) {
-  srand(time(NULL));
-  TsmResult answer;
-  Matrix<float> feromons(graph.GraphSize(), graph.GraphSize(), 0.2);
-  std::vector<std::vector<int>> roads;
-  std::vector<float> chance(graph.GraphSize());
-  std::vector<int> visited;
-  std::vector<int> roads_size;
-
-  const float alpha = 1;
-  const float beta = 1;
-  float all_chance = 0;
-  int start_point = 0;
-  int all_path = 0;
-  for (int k = 0; k < 100; ++k) {
-    visited.clear();
-    chance.clear();
-    while (visited.size() != graph.GraphSize()) {
-      visited.push_back(start_point);
-      for (int i = 0; i < graph.GraphSize(); ++i) {
-        if (graph(start_point, i) > 0) {
-          chance[i] = std::pow(feromons(start_point, i), alpha) * std::pow(graph(start_point, i), beta);
-          all_chance += chance[i];
-        }
-      }
-      float path_choice = RandomNumber();
-      for (int i = 0; i < graph.GraphSize(); ++i) {
-        path_choice -= chance[i] / all_chance;
-        if (path_choice <= 0) {
-          start_point = i;
-        }
-      }
-    }
-    roads.push_back(visited);
-    roads_size.push_back(SumVector(visited));
-
-  }
-
-  FeromonsEvaporation(feromons);
-  
-
-
-
-
-
-
-  return answer;
-}
-
 
 
 
