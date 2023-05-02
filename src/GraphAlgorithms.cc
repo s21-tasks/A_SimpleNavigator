@@ -1,6 +1,4 @@
-//
-// Created by Иван Захаров on 25.03.2023.
-//
+
 
 #include "GraphAlgorithms.h"
 
@@ -87,6 +85,77 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph &graph) {
   }
   return solve;
 }
+
+float RandomNumber() {
+  float ans = float(rand()) / float(RAND_MAX);
+  srand(ans * RAND_MAX);
+  return ans;
+}
+
+int SumVector(std::vector<int>& v) {
+  int ans = 0;
+  for (nt i = 0; i < v.size(); ++i) {
+    ans += v[i];
+  }
+  return ans;
+}
+
+void FeromonsEvaporation(std::vector<float>& f) {
+  const q = 0.64;
+  for (int i = 0; i < f.size(); ++i) {
+    f[i] *= 0.64;
+  }
+}
+
+TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(Graph &graph) {
+  srand(time(NULL));
+  TsmResult answer;
+  Matrix<float> feromons(graph.GraphSize(), graph.GraphSize(), 0.2);
+  std::vector<std::vector<int>> roads;
+  std::vector<float> chance(graph.GraphSize());
+  std::vector<int> visited;
+  std::vector<int> roads_size;
+
+  const float alpha = 1;
+  const float beta = 1;
+  float all_chance = 0;
+  int start_point = 0;
+  int all_path = 0;
+  for (int k = 0; k < 100; ++k) {
+    visited.clear();
+    chance.clear();
+    while (visited.size() != graph.GraphSize()) {
+      visited.push_back(start_point);
+      for (int i = 0; i < graph.GraphSize(); ++i) {
+        if (graph(start_point, i) > 0) {
+          chance[i] = std::pow(feromons(start_point, i), alpha) * std::pow(graph(start_point, i), beta);
+          all_chance += chance[i];
+        }
+      }
+      float path_choice = RandomNumber();
+      for (int i = 0; i < graph.GraphSize(); ++i) {
+        path_choice -= chance[i] / all_chance;
+        if (path_choice <= 0) {
+          start_point = i;
+        }
+      }
+    }
+    roads.push_back(visited);
+    roads_size.push_back(SumVector(visited));
+
+  }
+
+  FeromonsEvaporation(feromons);
+  
+
+
+
+
+
+
+  return answer;
+}
+
 
 
 
