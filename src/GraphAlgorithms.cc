@@ -88,6 +88,11 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph &graph) {
   return solve;
 }
 
+  TsmResult GraphAlgorithms::GeneticSolveSalesmanProblem(Graph &graph) {
+    GeneticAlgorithm sol(graph);
+    return sol.Execute();
+  }
+
 
 
 } // s21

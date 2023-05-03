@@ -7,7 +7,11 @@ namespace s21 {
 Graph::Graph(bool directed, int size, float zero_probability, int max_weight) :
     directed_(directed), matrix_(size) {
   directed_ ? RandomDirected(size, zero_probability, max_weight) :
-              RandomUndirected(size, zero_probability, max_weight);
+  RandomUndirected(size, zero_probability, max_weight);
+}
+
+Graph::Graph(std::string file_path) {
+  LoadGraphFromFile(file_path);
 }
 
 std::string Graph::CellName(int n) {
@@ -18,6 +22,8 @@ std::string Graph::CellName(int n) {
   } while (n > 0);
   return name;
 }
+
+
 
 void Graph::RandomDirected(int size, float zero_probability, int max_weight) {
   for (int k = 0; k < size; ++k) {

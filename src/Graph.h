@@ -17,7 +17,7 @@
 
 #include "random.h"
 
-#define MAX_GRAPH INT_MAX/2-1
+#define MAX_GRAPH (INT_MAX/2-1)
 
 namespace s21 {
 
@@ -39,6 +39,8 @@ namespace s21 {
     
     Graph(bool directed, int size, float zero_probability, int max_weight);
 
+    Graph(std::string file_path);
+
     int GraphSize();
     int &operator()(int row, int col);
     void PrintMatrix();
@@ -56,7 +58,7 @@ namespace s21 {
     void RandomDirected(int size, float zero_probability, int max_weight);
     void RandomUndirected(int size, float zero_probability, int max_weight);
 
-    std::string CellName(int n);
+    static std::string CellName(int n);
   };
 
 } // s21

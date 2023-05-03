@@ -13,5 +13,5 @@ add_executable( simpleNavigator
         main.cc
         GraphAlgorithms.h
         GraphAlgorithms.cc
-        )
+        GeneticAlgorithm.cc GeneticAlgorithm.h helpers.h)
 

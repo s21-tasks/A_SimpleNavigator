@@ -3,13 +3,11 @@
 
 #include "Graph.h"
 //#include <algorithm>
+#include "GeneticAlgorithm.h"
+#include "helpers.h"
 
 namespace s21 {
 
-  struct TsmResult {
-    int* vertices;    // Массив с искомым маршрутом (с порядком обхода вершин). Вместо int* можно использовать std::vector<int>
-    double distance;  // длина этого маршрута
-  };
 
 
   class GraphAlgorithms {
@@ -20,7 +18,8 @@ namespace s21 {
 
     int getShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2);
     Matrix<int> getShortestPathsBetweenAllVertices(Graph &graph);
-    TsmResult solveTravelingSalesmanProblem(Graph &graph);
+//    TsmResult solveTravelingSalesmanProblem(Graph &graph);
+    TsmResult GeneticSolveSalesmanProblem(Graph &graph);
 
 
   private:
