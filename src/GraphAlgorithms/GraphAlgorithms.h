@@ -8,8 +8,6 @@
 
 namespace s21 {
 
-
-
   class GraphAlgorithms {
 
   public:

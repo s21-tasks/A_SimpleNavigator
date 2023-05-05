@@ -41,6 +41,8 @@ namespace s21 {
 
     Graph(std::string file_path);
 
+    Graph() = default;
+
     int GraphSize();
     int &operator()(int row, int col);
     void PrintMatrix();
