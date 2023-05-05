@@ -1,10 +1,10 @@
 #ifndef SIMPLENAVIGATOR_GRAPHALGORITHMS_H
 #define SIMPLENAVIGATOR_GRAPHALGORITHMS_H
 
-#include "Graph.h"
+#include "../Graph/Graph.h"
 //#include <algorithm>
-#include "GeneticAlgorithm.h"
-#include "helpers.h"
+#include "GeneticAlgorithm/GeneticAlgorithm.h"
+#include "../helpers.h"
 
 namespace s21 {
 

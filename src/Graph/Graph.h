@@ -8,14 +8,14 @@
 #include <queue>
 #include <iosfwd>
 #include <sstream>
-#include "matrix.h"
+#include "../matrix.h"
 #include <climits>
 #include <stack>
 #include <cctype>
 
 #include <initializer_list>
 
-#include "random.h"
+#include "../random.h"
 
 #define MAX_GRAPH (INT_MAX/2-1)
 

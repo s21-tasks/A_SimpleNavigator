@@ -7,11 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(GTest)
 
 add_executable( simpleNavigator
-        Graph.cc
-        Graph.h
+        Graph/Graph.cc
+        Graph/Graph.h
         maykitbo_matrix/src/matrix.h
         main.cc
-        GraphAlgorithms.h
-        GraphAlgorithms.cc
-        GeneticAlgorithm.cc GeneticAlgorithm.h helpers.h)
+        GraphAlgorithm/GraphAlgorithms.h
+        GraphAlgorithm/GraphAlgorithms.cc
+        GraphAlgorithm/GeneticAlgorithm/GeneticAlgorithm.cc GraphAlgorithm/GeneticAlgorithm/GeneticAlgorithm.h helpers.h)
 

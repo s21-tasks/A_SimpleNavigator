@@ -5,9 +5,9 @@
 #ifndef SIMPLENAVIGATOR_GENETICALGORITHM_H
 #define SIMPLENAVIGATOR_GENETICALGORITHM_H
 
-#include "GraphAlgorithms.h"
-#include "Graph.h"
-#include "helpers.h"
+#include "../GraphAlgorithms.h"
+#include "../../Graph/Graph.h"
+#include "../../helpers.h"
 
 
 namespace s21 {
