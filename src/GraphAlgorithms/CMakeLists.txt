@@ -12,7 +12,7 @@ set(SOURCES
         GraphAlgorithms.h
         GeneticAlgorithm/GeneticAlgorithm.cc
         GeneticAlgorithm/GeneticAlgorithm.h
-        ../helpers.h
+        helpers.h
         )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})

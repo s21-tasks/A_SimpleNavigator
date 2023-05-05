@@ -2,9 +2,9 @@
 #define SIMPLENAVIGATOR_GRAPHALGORITHMS_H
 
 #include "../Graph/Graph.h"
-//#include <algorithm>
+#include <algorithm>
 #include "GeneticAlgorithm/GeneticAlgorithm.h"
-#include "../helpers.h"
+#include "helpers.h"
 
 namespace s21 {
 

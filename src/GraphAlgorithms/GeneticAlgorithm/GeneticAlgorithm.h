@@ -7,7 +7,7 @@
 
 #include "../GraphAlgorithms.h"
 #include "../../Graph/Graph.h"
-#include "../../helpers.h"
+#include "../helpers.h"
 
 
 namespace s21 {
