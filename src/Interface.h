@@ -1,9 +1,10 @@
 #pragma once
 
-#include "ConsoleInterface/ConsoleInterface.h"
+#include "lib/ConsoleInterface/ConsoleInterface.h"
 #include "Graph.h"
 #include "GraphAlgorithms.h"
-#include "sstr.h"
+#include "lib/sstr.h"
+#include "TslCompare/Compare.h"
 
 namespace s21 {
 

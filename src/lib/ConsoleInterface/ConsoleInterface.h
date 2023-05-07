@@ -9,7 +9,6 @@
 
 #include "Style.h"
 #include <vector>
-#include <functional>
 #include <limits>
 
 class Menu;

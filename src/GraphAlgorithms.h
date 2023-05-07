@@ -2,8 +2,7 @@
 #define SIMPLENAVIGATOR_GRAPHALGORITHMS_H
 
 #include "Graph.h"
-// #include "TSMResult.h"
-#include "AntColonyTSL.h"
+#include "AntColonyTSL/AntColonyTSL.h"
 
 #include <vector>
 #include <list>

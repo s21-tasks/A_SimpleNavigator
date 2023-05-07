@@ -1,7 +1,8 @@
 #pragma once
 
-#include "TSMResult.h"
-#include "matrix.h"
+#include "../TSMResult.h"
+#include "../lib/matrix.h"
+#include "../lib/random.h"
 
 namespace s21 {
 
@@ -12,8 +13,8 @@ template<class T>
 class AntColony {
 
     public:
-        AntColony(const Matrix<T> &graph, double alpha = 1.0, double beta = 1.0,
-                double rho = 0.5, int iterations = 300, int ants_count_k = 1, double Q_k = 1, double defult_pheromone = 0.3);
+        AntColony(const Matrix<T> &graph, double alpha = 0.8, double beta = 1.2,
+                double rho = 0.5, int iterations = 500, int ants_count_k = 1, double Q_k = 0.6, double defult_pheromone = 0.6);
 
         TsmResult Solve();
     
@@ -54,7 +55,7 @@ class Ant {
 
         void Visit(int move);
         double CountProbabilities();
-        void RandomVisit(double sum);
+        bool RandomVisit(double sum);
 
 };
 
@@ -139,7 +140,10 @@ void Ant<T>::Run() {
     route_.vertices[0] = start_;
 
     while (visited_ < colony_->size_ - 1) {
-        RandomVisit(CountProbabilities());
+        if (!RandomVisit(CountProbabilities())) {
+            route_.distance = INFINITY;
+            return;
+        }
     }
 
     route_.distance += colony_->graph_(position_, start_);
@@ -161,16 +165,17 @@ double Ant<T>::CountProbabilities() {
 }
 
 template<class T>
-void Ant<T>::RandomVisit(double sum) {
+bool Ant<T>::RandomVisit(double sum) {
     double selection = Random::Uniform<double>(0, sum);
     for (int i = 0; i < probabilities_.size(); ++i) {
         selection -= probabilities_[i];
         if (selection <= 0.0 && probabilities_[i] > 0.0) {
             Visit(i);
-            return;
+            return true;
         }
     }
-    throw std::invalid_argument("Incorrect graph");
+    // throw std::invalid_argument("Incorrect graph");
+    return false;
 }
 
 template<class T>

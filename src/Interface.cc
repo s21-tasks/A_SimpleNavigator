@@ -5,15 +5,16 @@ namespace s21 {
 Interface::Interface() {
     SStr::PrintStyle::container_delimiter = " -> ";
     auto home_menu = AddMenu({"loading the original graph from a file",
-    "create random graph",
-    "print graph to terminal",
-    "save matrix",
-    "graph traversal in breadth",
-    "graph traversal in depth",
-    "searching for the shortest path between any two vertices",
-    "searching for the shortest paths between all pairs of vertices in the graph",
-    "searching for the minimal spanning tree in the graph",
-    "solving the salesman problem"});
+        "create random graph",
+        "print graph to terminal",
+        "save matrix",
+        "graph traversal in breadth",
+        "graph traversal in depth",
+        "searching for the shortest path between any two vertices",
+        "searching for the shortest paths between all pairs of vertices in the graph",
+        "searching for the minimal spanning tree in the graph",
+        "solving the salesman problem",
+        "Comparison of methods for solving the traveling salesman problem"});
 
     home_menu->Connect(0,
         AddInput<std::string>("the path to the file",
@@ -46,15 +47,23 @@ Interface::Interface() {
     home_menu->Connect(7, home_menu, [&] { SStr::Print(GraphAlgorithms::getShortestPathsBetweenAllVertices(graph_)); });
 
     auto salesman_manu = AddMenu({
-        "Ant colony"
-    });
+            "Ant colony"
+        });
 
     home_menu->Connect(9, salesman_manu);
 
     salesman_manu->Connect(0, home_menu, [&] {
-        auto tsm_result = GraphAlgorithms::solveTravelingSalesmanProblem(graph_);
-        SStr::Print<' '>(tsm_result.distance, tsm_result.vertices);
-    });
+            auto tsm_result = GraphAlgorithms::solveTravelingSalesmanProblem(graph_);
+            SStr::Print<' '>(tsm_result.distance, tsm_result.vertices);
+        });
+
+    home_menu->Connect(10, AddInput<int>("number of iterations", [&] (int N) {
+            auto result = Compare::Time(graph_, N);
+            std::cout << "Ant colony: " << result[0] << " ms\n";
+            std::cout << "2: " << result[0] << " ms\n";
+            std::cout << "3: " << result[0] << " ms\n";
+        },
+        home_menu));
 }
 
 } // namespace s21
