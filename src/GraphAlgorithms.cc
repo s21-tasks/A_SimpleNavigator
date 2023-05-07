@@ -17,9 +17,9 @@ void GraphAlgorithms::depthSearch(Graph &graph, int vertex, std::vector<int>& vi
       st.push(i);
   }
   while (!st.empty()) {
-    if (std::find(visited.begin(), visited.end(), st.top()) == visited.end()) {
-      depthSearch(graph, st.top(), visited);
-    }
+    // if (std::find(visited.begin(), visited.end(), st.top()) == visited.end()) {
+    //   depthSearch(graph, st.top(), visited);
+    // }
     st.pop();
   }
 }
@@ -86,6 +86,12 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph &graph) {
     }
   }
   return solve;
+}
+
+TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(Graph &graph) {
+  AntColony<int> colony(graph.GetMatrix());
+
+  return colony.Solve();
 }
 
 

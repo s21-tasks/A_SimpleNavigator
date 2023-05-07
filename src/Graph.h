@@ -37,6 +37,8 @@ namespace s21 {
       matrix_(map_arg.size(), map_arg.size(), args...),
       directed_(di),weighted_(weighted) {}
     
+    Graph() = default;
+    
     Graph(bool directed, int size, float zero_probability, int max_weight);
 
     int GraphSize();
@@ -49,6 +51,7 @@ namespace s21 {
     void LoadGraphFromFile(const std::string& filename);
     void exportGraphToDot(const std::string &filename);
     void GraphToFile(const std::string& filename);
+    void CreateRandom(bool directed, int size, float zero_probability, int max_weight);
 
   private:
     static std::vector<std::string> SplitStr(std::string const &str, const char delim);

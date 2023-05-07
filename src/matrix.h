@@ -42,6 +42,13 @@ class Matrix {
                 }
             }
         }
+        void Loop(std::function<void(int, int)> func) const {
+            for (int k = 0; k < rows_; ++k) {
+                for (int g = 0; g < cols_; ++g) {
+                    func(k, g);
+                }
+            }
+        }
 
         Matrix() noexcept : rows_(0), cols_(0) {}
         Matrix(int rows, int cols) : rows_(rows), cols_(cols), matrix_(new T[rows * cols]()) {}
@@ -141,6 +148,9 @@ class Matrix {
         }
 
         void ForEach(std::function<void(const T&)> func) const {
+            Loop([&] (int k, int g) { func(matrix_[k * cols_ + g]); });
+        }
+        void ForEach(std::function<void(const T&)> func) {
             Loop([&] (int k, int g) { func(matrix_[k * cols_ + g]); });
         }
         void Fill(std::function<void(T&)> func) {
@@ -288,7 +298,7 @@ class Matrix {
         friend std::ostream& operator<<(std::ostream& os, const Matrix<T>& m) {
             for (int i = 0; i < m.rows_; ++i) {
                 for (int j = 0; j < m.cols_; ++j) {
-                    os << m(i, j) << " ";
+                    os << (int)m(i, j) << '\t';
                 }
                 os << "\n";
             }

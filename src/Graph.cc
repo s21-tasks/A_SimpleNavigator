@@ -10,6 +10,16 @@ Graph::Graph(bool directed, int size, float zero_probability, int max_weight) :
               RandomUndirected(size, zero_probability, max_weight);
 }
 
+void Graph::CreateRandom(bool directed, int size, float zero_probability, int max_weight) {
+  if (size <= 1 || zero_probability < 0.0 || zero_probability > 1.0 || max_weight <= 0) {
+    throw std::invalid_argument("Incorrect arguments: Create random graph");
+  }
+  matrix_ = Matrix<int>(size);
+  directed_ = directed;
+  directed_ ? RandomDirected(size, zero_probability, max_weight) :
+              RandomUndirected(size, zero_probability, max_weight);
+}
+
 std::string Graph::CellName(int n) {
   std::string name = "";
   do {
