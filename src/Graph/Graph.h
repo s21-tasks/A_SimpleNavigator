@@ -1,5 +1,4 @@
-#ifndef SIMPLENAVIGATOR_GRAPH_H
-#define SIMPLENAVIGATOR_GRAPH_H
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -8,61 +7,68 @@
 #include <queue>
 #include <iosfwd>
 #include <sstream>
-#include "../matrix.h"
+//#include "lib/matrix.h"
+#include "../submodules/cpp_libs/matrix/matrix.h"
 #include <climits>
 #include <stack>
 #include <cctype>
 
 #include <initializer_list>
 
-#include "../random.h"
+#include "../submodules/cpp_libs/utility/random.h"
 
-#define MAX_GRAPH (INT_MAX/2-1)
+#define MAX_GRAPH INT_MAX/2-1
 
 namespace s21 {
 
   class Graph {
     bool directed_;
-    bool weighted_;
-    std::map<std::string, int> vertices_;
+    std::vector<std::string> vertices_;
     Matrix<int> matrix_;
-
+    std::string name_ = "s21_graph";
 
 
   public:
 
-    template<class ...Args>
-    Graph(std::initializer_list<std::pair<std::string, int>> const &map_arg, bool di, bool weighted, Args ...args) :
-      vertices_(map_arg.begin(), map_arg.end()),
-      matrix_(map_arg.size(), map_arg.size(), args...),
-      directed_(di),weighted_(weighted) {}
-    
-    Graph(bool directed, int size, float zero_probability, int max_weight);
-
-    Graph(std::string file_path);
-
     Graph() = default;
 
+    Graph(bool directed, int size, float zero_probability, int max_weight);
+    Graph(const std::string &file_path);
+
     int GraphSize();
+
+    int Size() const;
+
     int &operator()(int row, int col);
+
+    const int &operator()(int row, int col) const;
+
     void PrintMatrix();
-    Matrix<int>& GetMatrix();
+
+    Matrix<int> &GetMatrix();
+
+    const Matrix<int> &GetMatrix() const;
+
+    void SetName(const std::string name);
 
 
-    void FromFileDot(const std::string& filepath);
-    void LoadGraphFromFile(const std::string& filename);
-    void exportGraphToDot(const std::string &filename);
-    void GraphToFile(const std::string& filename);
+    void LoadGraphFromFile(const std::string &filename);
+
+    void ExportGraphToDot(const std::string &filename);
+
+    void ExportGraphToFile(const std::string &filename);
+
+    void GraphToFile(const std::string &filename);
+
+    void CreateRandom(bool directed, int size, float zero_probability, int max_weight);
 
   private:
     static std::vector<std::string> SplitStr(std::string const &str, const char delim);
 
     void RandomDirected(int size, float zero_probability, int max_weight);
+
     void RandomUndirected(int size, float zero_probability, int max_weight);
 
-    static std::string CellName(int n);
+    std::string CellName(int n);
   };
-
-} // s21
-
-#endif //SIMPLENAVIGATOR_GRAPH_H
+}

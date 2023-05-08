@@ -3,16 +3,16 @@
 namespace s21 {
 
 
-std::vector<int> GraphAlgorithms::depthFirstSearch(s21::Graph &graph, int startVertex) {
+std::vector<int> GraphAlgorithms::depthFirstSearch(const Graph &graph, const int startVertex) {
   std::vector<int> visited;
   depthSearch(graph, startVertex, visited);
   return visited;
 }
 
-void GraphAlgorithms::depthSearch(Graph &graph, int vertex, std::vector<int>& visited) {
+void GraphAlgorithms::depthSearch(const Graph &graph, const int vertex, std::vector<int>& visited) {
   std::stack<int> st;
   visited.push_back(vertex);
-  for (int i = graph.GraphSize()-1; i >=0 ; --i) {
+  for (int i = graph.Size()-1; i >=0 ; --i) {
     if (graph(vertex,i))
       st.push(i);
   }
@@ -24,10 +24,10 @@ void GraphAlgorithms::depthSearch(Graph &graph, int vertex, std::vector<int>& vi
   }
 }
 
-std::vector<int> GraphAlgorithms::breadthFirstSearch(Graph &graph, int startVertex) {
+std::vector<int> GraphAlgorithms::breadthFirstSearch(const Graph &graph, const int startVertex) {
   std::queue<int> q;
   std::vector<int> visited;
-  std::vector<bool> visited_bool(graph.GraphSize(), false);
+  std::vector<bool> visited_bool(graph.Size(), false);
   q.push(startVertex);
   visited_bool[startVertex] = true;
   while (!q.empty()) {
@@ -37,7 +37,7 @@ std::vector<int> GraphAlgorithms::breadthFirstSearch(Graph &graph, int startVert
       visited.push_back(v);
       visited_bool[v] = true;
     }
-    for (int i = 0; i < graph.GraphSize(); ++i) {
+    for (int i = 0; i < graph.Size(); ++i) {
         if (graph(v,i) && !visited_bool[i])
           q.push(i);
     }
@@ -45,21 +45,21 @@ std::vector<int> GraphAlgorithms::breadthFirstSearch(Graph &graph, int startVert
   return visited;
 }
 
-int GraphAlgorithms::getShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2) {
-  std::vector<int> path_size(graph.GraphSize(), INT_MAX);
-  std::vector<bool> visited(graph.GraphSize(), false);
+int GraphAlgorithms::getShortestPathBetweenVertices(const Graph &graph,const int vertex1,const int vertex2) {
+  std::vector<int> path_size(graph.Size(), INT_MAX);
+  std::vector<bool> visited(graph.Size(), false);
   path_size[vertex1] = 0;
   int vert = INT_MAX;
   int vert_index = vertex1;
   do {
     vert = INT_MAX;
-    for (int i = 0; i < graph.GraphSize(); ++i) {
+    for (int i = 0; i < graph.Size(); ++i) {
       if (!visited[i] && path_size[i] < vert) {
         vert = path_size[i];
         vert_index = i;
       }
     }
-    for (int i = 0; i < graph.GraphSize(); ++i) {
+    for (int i = 0; i < graph.Size(); ++i) {
       if (graph(vert_index,i)>0) {
         path_size[i] = std::min(path_size[i], path_size[vert_index]+graph(vert_index,i));
       }
@@ -69,7 +69,7 @@ int GraphAlgorithms::getShortestPathBetweenVertices(Graph &graph, int vertex1, i
   return path_size[vertex2];
 }
 
-Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph &graph) {
+Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(const Graph &graph) {
   Matrix<int> solve(graph.GetMatrix());
   for (int i = 0; i < solve.GetCols(); ++i) {
     for (int j = 0; j < solve.GetCols(); ++j) {
@@ -88,11 +88,38 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph &graph) {
   return solve;
 }
 
-  TsmResult GraphAlgorithms::GeneticSolveSalesmanProblem(Graph &graph) {
+  TsmResult GraphAlgorithms::GeneticSolveSalesmanProblem(const Graph &graph) {
     GeneticAlgorithm sol(graph);
     return sol.Execute();
   }
 
+  TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(const Graph &graph) {
+    AntColony<int> colony(graph.GetMatrix());
+
+    return colony.Solve();
+  }
+
+  std::vector<int> GraphAlgorithms::GetLeastSpanningTree(const Graph &graph) {
+    const int size = graph.Size();
+
+    std::vector<int> result(size, 0);
+    std::vector<bool> visited(size, false);
+    visited[0] = true;
+
+    for (int k = 1; k < size; ++k) {
+      int min = INT_MAX;
+      for (int i = 0; i < size; ++i) {
+        int cell = graph(result[k - 1], i);
+        if (cell < min && cell != 0 && !visited[i]) {
+          min = cell;
+          result[k] = i;
+        }
+      }
+      visited[result[k]] = true;
+    }
+
+    return result;
+  }
 
 
 } // s21

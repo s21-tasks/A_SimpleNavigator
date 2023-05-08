@@ -20,12 +20,12 @@ namespace s21 {
     const int NUM_ITERATIONS = 1500;
     const double MUTATION_RATE = 0.05;
 
-    Graph &graph;
+    const Graph &graph;
     Matrix<int> population;
 
   public:
     GeneticAlgorithm() = delete;
-    GeneticAlgorithm(Graph &graph_);
+    explicit GeneticAlgorithm(const Graph &graph_);
 
     TsmResult Execute();
     void GeneratePopulation();

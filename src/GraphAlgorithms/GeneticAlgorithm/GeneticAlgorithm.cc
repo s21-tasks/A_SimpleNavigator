@@ -2,13 +2,13 @@
 
 using namespace s21;
 
-GeneticAlgorithm::GeneticAlgorithm(Graph &graph_) : graph(graph_){}
+GeneticAlgorithm::GeneticAlgorithm(const Graph &graph_) : graph(graph_){}
 
 using graph_type = double;
 
 
 void GeneticAlgorithm::GeneratePopulation() {
-  population = Matrix<int>(POPULATION_SIZE, graph.GraphSize());
+  population = Matrix<int>(POPULATION_SIZE, graph.Size());
   std::vector<int> temp_vector(population.GetCols());
   for (int j = 0; j < population.GetCols(); ++j) {
     temp_vector[j] = j;
@@ -114,12 +114,3 @@ TsmResult GeneticAlgorithm::Execute() {
   ans.distance = RouteLength(sol_index);
   return ans;
 }
-
-
-
-
-
-
-
-
-

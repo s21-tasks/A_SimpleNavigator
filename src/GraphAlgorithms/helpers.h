@@ -1,8 +1,21 @@
 #pragma once
 
-#include "../Graph/Graph.h"
+#include <vector>
 
-struct TsmResult {
-  std::vector<int> vertices;    // Массив с искомым маршрутом (с порядком обхода вершин). Вместо int* можно использовать std::vector<int>
-  double distance;  // длина этого маршрута
-};
+namespace s21 {
+
+  struct TsmResult {
+    std::vector<int> vertices;
+    double distance = 0;
+
+    TsmResult() = default;
+    TsmResult(double d, const std::vector<int> &v) : distance(d) , vertices(v) {}
+
+    TsmResult& operator=(const TsmResult &other) {
+      vertices = other.vertices;
+      distance = other.distance;
+      return *this;
+    }
+  };
+
+} // namespace s21
