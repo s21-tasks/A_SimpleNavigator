@@ -35,7 +35,7 @@ namespace s21 {
     Graph() = default;
     
     Graph(bool directed, int size, float zero_probability, int max_weight);
-
+    Graph(const std::string &filename);
     int GraphSize();
     int Size() const;
     int &operator()(int row, int col);

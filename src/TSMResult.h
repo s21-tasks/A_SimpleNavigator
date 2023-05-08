@@ -8,6 +8,7 @@ struct TsmResult {
     std::vector<int> vertices;
     double distance = 0;
 
+    TsmResult() = default;
     TsmResult(double d, const std::vector<int> &v) : distance(d) , vertices(v) {}
 
     void operator=(const TsmResult &other) {

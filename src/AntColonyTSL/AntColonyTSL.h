@@ -67,7 +67,7 @@ AntColony<T>::AntColony(const Matrix<T> &graph, double alpha, double beta,
             ants_(ants_count_k * size_, Ant<T>(this)), iterations_(iterations),
             Q_(0.0), pheromone_(size_, size_, defult_pheromone),
             result_(INFINITY, std::vector<int>(size_ + 1, 0)) {
-
+    // std::cout << graph.GetCols() << '\n';
     graph_.ForEach([&] (const T &cell) {
         Q_ += cell;
     });

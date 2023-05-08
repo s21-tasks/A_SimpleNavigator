@@ -89,8 +89,11 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph &graph) {
 }
 
 TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(const Graph &graph) {
-  AntColony<int> colony(graph.GetMatrix());
+  if (graph.Size() <= 1) {
+    throw std::invalid_argument("Incorrect graph size: " + std::to_string(graph.Size()));
+  }
 
+  AntColony<int> colony(graph.GetMatrix());
   return colony.Solve();
 }
 
