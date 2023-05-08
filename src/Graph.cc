@@ -31,7 +31,7 @@ std::string Graph::CellName(int n) {
 
 void Graph::RandomDirected(int size, float zero_probability, int max_weight) {
   for (int k = 0; k < size; ++k) {
-    vertices_.emplace(CellName(k), k);
+    vertices_[k] = CellName(k);
     for (int g = 0; g < size; ++g) {
       if (k != g && !Random::Bool(zero_probability)) {
         matrix_(k, g) = Random::Int(1, max_weight);
@@ -42,7 +42,7 @@ void Graph::RandomDirected(int size, float zero_probability, int max_weight) {
 
 void Graph::RandomUndirected(int size, float zero_probability, int max_weight) {
   for (int k = 0; k < size; ++k) {
-    vertices_.emplace(CellName(k), k);
+    vertices_[k] = CellName(k);
     for (int g = k+1; g < size; ++g) {
       if (!Random::Bool(zero_probability)) {
         matrix_(k, g) = matrix_(g, k) = Random::Int(1, max_weight);
@@ -54,13 +54,18 @@ void Graph::RandomUndirected(int size, float zero_probability, int max_weight) {
 
 void Graph::LoadGraphFromFile(const std::string& filename) {
   std::ifstream file(filename, std::ios::in);
+  if (!file) {
+    throw std::invalid_argument("invalid file!");
+  }
   int size = 0;
   file >> size;
   if (size == 0) {
     throw std::invalid_argument("invalid file!");
   }
+  vertices_.resize(size);
   matrix_ = Matrix<int>(size, size, -1);
   for (int k = 0; k < size; ++k) {
+    vertices_[k] = CellName(k);
     for (int g = 0; g < size; ++g) {
       file >> matrix_(k, g);
       if (matrix_(k, g) < 0) {
@@ -74,17 +79,50 @@ void Graph::LoadGraphFromFile(const std::string& filename) {
 }
 
 void Graph::GraphToFile(const std::string& filename) {
-  std::ofstream file(filename);
-  const int size = matrix_.GetCols();
-  file << size << "\n";
-  for (int k = 0; k < size; ++k) {
-    for (int g = 0; g < size; ++g) {
-      file << matrix_[k][g] << (g == size-1 ? '\n' : '\t');
-    }
+  if (filename.length() >= 4 && filename.substr(filename.length() - 4) == ".dot") {
+    ExportGraphToDot(filename);
+  } else {
+    ExportGraphToFile(filename);
   }
+  
+  // for (int k = 0; k < size; ++k) {
+  //   for (int g = 0; g < size; ++g) {
+  //     file << matrix_[k][g] << (g == size-1 ? '\n' : '\t');
+  //   }
+  // }
 }
 
-void Graph::exportGraphToDot(const std::string &filename) {
+void Graph::ExportGraphToFile(const std::string &filename) {
+  std::ofstream file(filename);
+  if (!file) {
+    throw std::invalid_argument("invalid file!");
+  }
+  const int size = matrix_.GetCols();
+  file << size << "\n";
+  file << matrix_;
+}
+
+void Graph::ExportGraphToDot(const std::string &filename) {
+  std::ofstream file(filename);
+  if (!file) {
+    throw std::invalid_argument("invalid file!");
+  }
+  const int size = matrix_.GetCols();
+  file << (directed_ ? "digraph " : "graph ") << name_ << " {\n";
+  for (int i = 0; i < size; ++i) {
+      for (int j = (directed_ ? 0 : i); j < size; ++j) {
+          int weight = matrix_(i, j);
+          if (weight != 0) {
+              file << "  " << vertices_[i] << (directed_ ? " -> " : " -- ") << vertices_[j];
+              if (weight != 1) {
+                  file << " [label=\"" << weight << "\"]";
+              }
+              file << ";\n";
+          }
+      }
+  }
+  file << "}\n";
+  file.close();
   return;
 }
 
@@ -126,59 +164,59 @@ vector<string> Graph::SplitStr(std::string const &str, const char delim = ' ') {
 }
 
 
-  void Graph::FromFileDot(const string& filepath) {
-  std::ifstream in(filepath, std::ios::in);
-  string line;
-  std::map<string,string> temp;
-  int temp_count = 0;
+//   void Graph::FromFileDot(const string& filepath) {
+//   std::ifstream in(filepath, std::ios::in);
+//   string line;
+//   std::map<string,string> temp;
+//   int temp_count = 0;
 
-  getline(in, line);
-  auto spl = SplitStr(line);
-  if (spl[0] =="digraph") {
-    directed_ = 1;
-  } else if (spl[0] =="graph") {
-    directed_ = 0;
-  } else {
-    throw std::invalid_argument("invalid file!");
-  }
+//   getline(in, line);
+//   auto spl = SplitStr(line);
+//   if (spl[0] =="digraph") {
+//     directed_ = 1;
+//   } else if (spl[0] =="graph") {
+//     directed_ = 0;
+//   } else {
+//     throw std::invalid_argument("invalid file!");
+//   }
 
-//  TODO сделать проверку строки
+// //  TODO сделать проверку строки
 
-  while (getline(in, line)) {
-    vector<string> w = SplitStr(line);
-    if (w.size() == 1) {
-//      TODO сделать добавление строк тут
-      continue;
-    }
-    for (int i = 0; i < w.size(); i+=2) {
-      if (w[i][w[i].size()-1] == ';') {
-        w[i].pop_back();
-      }
-      if (vertices_.find(w[i])==vertices_.end())
-        vertices_[w[i]] = vertices_.size();
+//   while (getline(in, line)) {
+//     vector<string> w = SplitStr(line);
+//     if (w.size() == 1) {
+// //      TODO сделать добавление строк тут
+//       continue;
+//     }
+//     for (int i = 0; i < w.size(); i+=2) {
+//       if (w[i][w[i].size()-1] == ';') {
+//         w[i].pop_back();
+//       }
+//       if (vertices_.find(w[i])==vertices_.end())
+//         vertices_[w[i]] = vertices_.size();
 
-    }
-  }
-  in.close();
-  in.open(filepath);
+//     }
+//   }
+//   in.close();
+//   in.open(filepath);
 
-  matrix_ = Matrix<int>(vertices_.size(), vertices_.size());
-  getline(in, line);
-  while (getline(in, line)) {
-    vector<string> w = SplitStr(line);
-    if (w.size() == 1) {
-//      TODO сделать добавление строк тут
-      continue;
-    }
-    for (int i = 0; i < w.size()-2; i+=2) {
-      if (w[i+2][w[i+2].size()-1] == ';')
-        w[i+2].pop_back();
+//   matrix_ = Matrix<int>(vertices_.size(), vertices_.size());
+//   getline(in, line);
+//   while (getline(in, line)) {
+//     vector<string> w = SplitStr(line);
+//     if (w.size() == 1) {
+// //      TODO сделать добавление строк тут
+//       continue;
+//     }
+//     for (int i = 0; i < w.size()-2; i+=2) {
+//       if (w[i+2][w[i+2].size()-1] == ';')
+//         w[i+2].pop_back();
 
-      matrix_(vertices_[w[i]], vertices_[w[i+2]]) = 1;
-      matrix_(vertices_[w[i+2]], vertices_[w[i]]) = 1;
-    }
-  }
-}
+//       matrix_(vertices_[w[i]], vertices_[w[i+2]]) = 1;
+//       matrix_(vertices_[w[i+2]], vertices_[w[i]]) = 1;
+//     }
+//   }
+// }
 
 
 
