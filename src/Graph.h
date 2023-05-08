@@ -24,7 +24,6 @@ namespace s21 {
   class Graph {
     bool directed_;
     bool weighted_;
-    // std::map<std::string, int> vertices_;
     std::vector<std::string> vertices_;
     Matrix<int> matrix_;
     std::string name_ = "s21_graph";
@@ -32,28 +31,21 @@ namespace s21 {
 
 
   public:
-
-    // template<class ...Args>
-    // Graph(std::initializer_list<std::pair<std::string, int>> const &map_arg, bool di, bool weighted, Args ...args) :
-    //   vertices_(map_arg.begin(), map_arg.end()),
-    //   matrix_(map_arg.size(), map_arg.size(), args...),
-    //   directed_(di),weighted_(weighted) {}
     
     Graph() = default;
     
     Graph(bool directed, int size, float zero_probability, int max_weight);
 
     int GraphSize();
-    int Size() const { return matrix_.GetCols(); }
+    int Size() const;
     int &operator()(int row, int col);
-    const int &operator()(int row, int col) const { return matrix_(row, col); }
+    const int &operator()(int row, int col) const;
     void PrintMatrix();
     Matrix<int>& GetMatrix();
-    const Matrix<int>& GetMatrix() const { return matrix_; }
-    void SetName(const std::string name) { name_ = name; }
+    const Matrix<int>& GetMatrix() const;
+    void SetName(const std::string name);
 
 
-    // void FromFileDot(const std::string& filepath);
     void LoadGraphFromFile(const std::string& filename);
     void ExportGraphToDot(const std::string &filename);
     void ExportGraphToFile(const std::string &filename);

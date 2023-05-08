@@ -11,9 +11,13 @@ Graph::Graph(bool directed, int size, float zero_probability, int max_weight) :
 }
 
 void Graph::CreateRandom(bool directed, int size, float zero_probability, int max_weight) {
-  if (size <= 1 || zero_probability < 0.0 || zero_probability > 1.0 || max_weight <= 0) {
-    throw std::invalid_argument("Incorrect arguments: Create random graph");
-  }
+  if (size <= 1)
+    throw std::invalid_argument("Incorrect graph size: " + std::to_string(size));
+  if (zero_probability < 0.0 || zero_probability > 1.0)
+    throw std::invalid_argument("Incorrect graph zero_probability: " + std::to_string(zero_probability));
+  if (max_weight <= 0)
+    throw std::invalid_argument("Incorrect graph max weight: " + std::to_string(max_weight));
+
   matrix_ = Matrix<int>(size);
   directed_ = directed;
   directed_ ? RandomDirected(size, zero_probability, max_weight) :
@@ -51,7 +55,6 @@ void Graph::RandomUndirected(int size, float zero_probability, int max_weight) {
   }
 }
 
-
 void Graph::LoadGraphFromFile(const std::string& filename) {
   std::ifstream file(filename, std::ios::in);
   if (!file) {
@@ -76,6 +79,7 @@ void Graph::LoadGraphFromFile(const std::string& filename) {
       throw std::invalid_argument("invalid file!");
     }
   }
+  file.close();
 }
 
 void Graph::GraphToFile(const std::string& filename) {
@@ -84,12 +88,6 @@ void Graph::GraphToFile(const std::string& filename) {
   } else {
     ExportGraphToFile(filename);
   }
-  
-  // for (int k = 0; k < size; ++k) {
-  //   for (int g = 0; g < size; ++g) {
-  //     file << matrix_[k][g] << (g == size-1 ? '\n' : '\t');
-  //   }
-  // }
 }
 
 void Graph::ExportGraphToFile(const std::string &filename) {
@@ -100,6 +98,7 @@ void Graph::ExportGraphToFile(const std::string &filename) {
   const int size = matrix_.GetCols();
   file << size << "\n";
   file << matrix_;
+  file.close();
 }
 
 void Graph::ExportGraphToDot(const std::string &filename) {
@@ -110,16 +109,16 @@ void Graph::ExportGraphToDot(const std::string &filename) {
   const int size = matrix_.GetCols();
   file << (directed_ ? "digraph " : "graph ") << name_ << " {\n";
   for (int i = 0; i < size; ++i) {
-      for (int j = (directed_ ? 0 : i); j < size; ++j) {
-          int weight = matrix_(i, j);
-          if (weight != 0) {
-              file << "  " << vertices_[i] << (directed_ ? " -> " : " -- ") << vertices_[j];
-              if (weight != 1) {
-                  file << " [label=\"" << weight << "\"]";
-              }
-              file << ";\n";
-          }
+    for (int j = (directed_ ? 0 : i); j < size; ++j) {
+      int weight = matrix_(i, j);
+      if (weight != 0) {
+        file << "  " << vertices_[i] << (directed_ ? " -> " : " -- ") << vertices_[j];
+        if (weight != 1) {
+            file << " [label=\"" << weight << "\"]";
+        }
+        file << ";\n";
       }
+    }
   }
   file << "}\n";
   file.close();
@@ -142,6 +141,21 @@ Matrix<int>& Graph::GetMatrix() {
   return matrix_;
 }
 
+int Graph::Size() const {
+  return matrix_.GetCols();
+}
+
+const int &Graph::operator()(int row, int col) const {
+  return matrix_(row, col);
+}
+
+const Matrix<int>& Graph::GetMatrix() const {
+  return matrix_;
+}
+
+void Graph::SetName(const std::string name) {
+  name_ = name;
+}
 
 
 

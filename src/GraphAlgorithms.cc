@@ -95,8 +95,8 @@ TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(const Graph &graph) {
 }
 
 std::vector<int> GraphAlgorithms::GetLeastSpanningTree(const Graph &graph) {
-  int size = graph.Size();
-  // auto matrix = graph.GetMatrix();
+  const int size = graph.Size();
+
   std::vector<int> result(size, 0);
   std::vector<bool> visited(size, false);
   visited[0] = true;
