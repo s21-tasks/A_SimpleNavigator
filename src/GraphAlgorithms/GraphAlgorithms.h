@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Graph/Graph.h"
+#include "Graph.h"
 #include <algorithm>
 #include "GeneticAlgorithm/GeneticAlgorithm.h"
 #include "AntColonyAlgorithm/AntColonyTSL.h"

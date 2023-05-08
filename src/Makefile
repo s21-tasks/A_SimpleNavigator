@@ -1,6 +1,10 @@
 
+all: test
+
 submodules:
-	cd ..; git submodule update --init --recursive
+	git submodule update --init --recursive
+	git submodule update --recursive --remote
+
 
 s21_graph.a: submodules
 	@mkdir -p Graph/build
@@ -15,9 +19,7 @@ s21_graph_algorithms.a: submodules
 test: submodules
 	mkdir -p build
 	@cmake -B"build" .
-	@$(MAKE) -C build
-
-
+	@$(MAKE) -C
 
 clean_graph:
 	rm -rf Graph/build
