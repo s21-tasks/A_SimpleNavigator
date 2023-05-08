@@ -46,6 +46,8 @@ Interface::Interface() {
 
     home_menu->Connect(7, home_menu, [&] { SStr::Print(GraphAlgorithms::getShortestPathsBetweenAllVertices(graph_)); });
 
+    home_menu->Connect(8, home_menu, [&] { SStr::Print(GraphAlgorithms::GetLeastSpanningTree(graph_)); });
+
     auto salesman_manu = AddMenu({
             "Ant colony"
         });

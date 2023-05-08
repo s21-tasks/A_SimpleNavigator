@@ -42,9 +42,11 @@ namespace s21 {
     Graph(bool directed, int size, float zero_probability, int max_weight);
 
     int GraphSize();
+    int Size() const { return matrix_.GetCols(); }
     int &operator()(int row, int col);
     void PrintMatrix();
     Matrix<int>& GetMatrix();
+    const Matrix<int>& GetMatrix() const { return matrix_; }
 
 
     void FromFileDot(const std::string& filepath);

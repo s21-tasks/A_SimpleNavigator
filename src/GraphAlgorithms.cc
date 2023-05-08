@@ -88,11 +88,34 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph &graph) {
   return solve;
 }
 
-TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(Graph &graph) {
+TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(const Graph &graph) {
   AntColony<int> colony(graph.GetMatrix());
 
   return colony.Solve();
 }
+
+std::vector<int> GraphAlgorithms::GetLeastSpanningTree(const Graph &graph) {
+  int size = graph.Size();
+  auto matrix = graph.GetMatrix();
+  std::vector<int> result(size, 0);
+  std::vector<bool> visited(size, false);
+  visited[0] = true;
+  
+  for (int k = 1; k < size; ++k) {
+    int min = INT_MAX;
+    for (int i = 0; i < size; ++i) {
+      int cell = matrix(result[k - 1], i);
+      if (cell < min && cell != 0 && !visited[i]) {
+        min = cell;
+        result[k] = i;
+      }
+    }
+    visited[result[k]] = true;
+  }
+
+  return result;
+}
+
 
 
 

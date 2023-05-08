@@ -174,7 +174,6 @@ bool Ant<T>::RandomVisit(double sum) {
             return true;
         }
     }
-    // throw std::invalid_argument("Incorrect graph");
     return false;
 }
 

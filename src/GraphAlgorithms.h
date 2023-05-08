@@ -21,7 +21,9 @@ namespace s21 {
 
     static int getShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2);
     static Matrix<int> getShortestPathsBetweenAllVertices(Graph &graph);
-    static TsmResult solveTravelingSalesmanProblem(Graph &graph);
+    static TsmResult solveTravelingSalesmanProblem(const Graph &graph);
+
+    static std::vector<int> GetLeastSpanningTree(const Graph &graph);
 
 
   private:
