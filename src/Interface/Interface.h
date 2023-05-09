@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../submodules/cpp_libs/ConsoleInterface/ConsoleInterface.h"
+#include "ConsoleInterface.h"
 #include "Graph.h"
 #include "GraphAlgorithms.h"
-#include "../submodules/cpp_libs/utility/utility.h"
-#include "../TslCompare/Compare.h"
+#include "utility.h"
+#include "Compare.h"
 
 namespace s21 {
 

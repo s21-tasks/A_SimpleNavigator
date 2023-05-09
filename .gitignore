@@ -50,4 +50,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+.vscode
+
 cmake-build-debug

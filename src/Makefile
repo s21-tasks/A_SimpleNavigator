@@ -2,8 +2,10 @@
 all: test
 
 submodules:
+	cd ..
 	git submodule update --init --recursive
 	git submodule update --recursive --remote
+	cd src
 
 
 s21_graph.a: submodules

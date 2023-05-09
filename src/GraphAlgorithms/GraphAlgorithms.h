@@ -3,7 +3,7 @@
 #include "Graph.h"
 #include <algorithm>
 #include "GeneticAlgorithm/GeneticAlgorithm.h"
-#include "AntColonyAlgorithm/AntColonyTSL.h"
+#include "AntColonyAlgorithm/AntColonyAlgorithm.h"
 #include "helpers.h"
 
 namespace s21 {

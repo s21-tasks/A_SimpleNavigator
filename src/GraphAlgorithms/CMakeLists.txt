@@ -21,7 +21,7 @@ set(SOURCES
         GraphAlgorithms.h
         GeneticAlgorithm/GeneticAlgorithm.cc
         GeneticAlgorithm/GeneticAlgorithm.h
-        AntColonyAlgorithm/AntColonyTSL.h
+        AntColonyAlgorithm/AntColonyAlgorithm.h
         helpers.h
         )
 

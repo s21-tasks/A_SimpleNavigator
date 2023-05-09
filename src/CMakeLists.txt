@@ -5,18 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-
-#add_subdirectory(Graph ${CMAKE_BINARY_DIR}/Graph)
 add_subdirectory(GraphAlgorithms ${CMAKE_BINARY_DIR}/GraphAlgorithms)
 add_subdirectory(submodules/cpp_libs/matrix)
-
-# set(CMAKE_VERBOSE_MAKEFILE ON)
-# set(CMAKE_RULE_MESSAGES ON)
-# message("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 add_subdirectory(submodules/cpp_libs/utility)
 add_subdirectory(submodules/cpp_libs/ConsoleInterface)
-
-#find_package(GTest)
 
 add_executable( ${PROJECT_NAME}
         main.cc
@@ -26,10 +18,10 @@ add_executable( ${PROJECT_NAME}
         TslCompare/Compare.cc
         )
 
-# add_subdirectory(submodules/cpp_libs/utility)
-
 link_directories(${CMAKE_BINARY_DIR}/submodules/cpp_libs/utility)
 
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/TslCompare)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/Interface)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE s21_graph_algorithms.a)
 target_link_libraries(${PROJECT_NAME} PRIVATE matrix)
