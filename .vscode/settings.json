@@ -67,6 +67,9 @@
         "variant": "cpp",
         "semaphore": "cpp",
         "any": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "climits": "cpp",
+        "stack": "cpp",
+        "codecvt": "cpp"
     }
 }

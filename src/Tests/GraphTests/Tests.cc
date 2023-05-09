@@ -13,23 +13,49 @@ TEST_P(GraphGT, Test1) {
     Tester();
 }
 
-static bool CheckDirected(const Graph &G) {
-    for (int k = 0; k < G.Size(); ++k) {
-        for (int i = k + 1; i < G.Size(); ++i) {
-            if (G(k, i) != G(i, k)) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-TEST(GraphTest, FileConstructor) {
-    Graph G(SStr::RelativePath(__FILE__, "/../materials/1.txt"));
+TEST(GraphTest, FileConstructor1) {
+    Graph G(SStr::RelativePath(__FILE__, "/../materials/test_files/1.txt"));
     ASSERT_EQ(G.Size(), 11);
     ASSERT_EQ(G.GetMatrix().GetCols(), 11);
     ASSERT_EQ(G.GetMatrix().GetRows(), 11);
+    ASSERT_EQ(G.Directed(), false);
+}
 
+TEST(GraphTest, FileConstructor2) {
+    Graph G(SStr::RelativePath(__FILE__, "/../materials/test_files/2.txt"));
+    ASSERT_EQ(G.Size(), 15);
+    ASSERT_EQ(G.Directed(), true);
+}
+
+TEST(GraphTest, FileConstructor3) {
+    ASSERT_ANY_THROW(Graph G(SStr::RelativePath(__FILE__, "/../materials/test_files/3.txt")));
+}
+
+TEST(GraphTest, FileConstructor4) {
+    ASSERT_ANY_THROW(Graph G(SStr::RelativePath(__FILE__, "/../materials/test_files/4.txt")));
+}
+
+TEST(GraphTest, FileConstructor5) {
+    ASSERT_ANY_THROW(Graph G(SStr::RelativePath(__FILE__, "/../materials/test_files/5.txt")));
+}
+
+TEST(GraphTest, FileConstructor6) {
+    ASSERT_ANY_THROW(Graph G(SStr::RelativePath(__FILE__, "/../materials/test_files/6.txt")));
+}
+
+TEST(GraphTest, FileConstructor7) {
+    ASSERT_ANY_THROW(Graph G(SStr::RelativePath(__FILE__, "/../materials/test_files/7.txt")));
+}
+
+TEST(GraphTest, FileConstructor8) {
+    ASSERT_ANY_THROW(Graph G(SStr::RelativePath(__FILE__, "/../materials/test_files/8.txt")));
+}
+
+TEST(GraphTest, FileConstructor9) {
+    ASSERT_ANY_THROW(Graph G(SStr::RelativePath(__FILE__, "/../materials/test_files/9.txt")));
+}
+
+TEST(GraphTest, FileConstructor10) {
     ASSERT_ANY_THROW(Graph GE(""));
     ASSERT_ANY_THROW(Graph GE("INCORRECT_FILE_PATH.txt"));
 }

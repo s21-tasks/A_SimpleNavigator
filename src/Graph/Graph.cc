@@ -67,7 +67,7 @@ namespace s21 {
     int size = 0;
     file >> size;
     if (size == 0) {
-      throw std::invalid_argument("invalid file!");
+      throw std::invalid_argument("invalid size of matrix in file!");
     }
     vertices_.resize(size);
     matrix_ = Matrix<int>(size, size, -1);
@@ -75,15 +75,27 @@ namespace s21 {
       vertices_[k] = CellName(k);
       for (int g = 0; g < size; ++g) {
         file >> matrix_(k, g);
-        if (matrix_(k, g) < 0) {
-          throw std::invalid_argument("invalid file!");
+        if (matrix_(k, g) < 0 || (k == g && matrix_(k, g) != 0)) {
+          throw std::invalid_argument("invalid matrix in file!");
         }
       }
       if (file.peek() != '\n' && file.peek() != EOF) {
-        throw std::invalid_argument("invalid file!");
+        throw std::invalid_argument("invalid file struct!");
       }
     }
+    directed_ = IsDirected();
     file.close();
+  }
+
+  bool Graph::IsDirected() const {
+    for (int k = 0; k < matrix_.GetCols(); ++k) {
+      for (int g = k + 1; g < matrix_.GetRows(); ++g) {
+        if (matrix_(g, k) != matrix_(k, g)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   void Graph::GraphToFile(const std::string& filename) {
@@ -147,6 +159,10 @@ namespace s21 {
 
   int Graph::Size() const {
     return matrix_.GetCols();
+  }
+
+  bool Graph::Directed() const {
+    return directed_;
   }
 
   const int &Graph::operator()(int row, int col) const {

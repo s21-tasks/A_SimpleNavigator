@@ -50,6 +50,8 @@ namespace s21 {
 
     void SetName(const std::string name);
 
+    bool Directed() const;
+
 
     void LoadGraphFromFile(const std::string &filename);
 
@@ -69,5 +71,7 @@ namespace s21 {
     void RandomUndirected(int size, float zero_probability, int max_weight);
 
     std::string CellName(int n);
+
+    bool IsDirected() const;
   };
 }
