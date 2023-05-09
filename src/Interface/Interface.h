@@ -3,7 +3,7 @@
 #include "../submodules/cpp_libs/ConsoleInterface/ConsoleInterface.h"
 #include "Graph.h"
 #include "GraphAlgorithms.h"
-#include "../submodules/cpp_libs/utility/sstr.h"
+#include "../submodules/cpp_libs/utility/utility.h"
 #include "../TslCompare/Compare.h"
 
 namespace s21 {

@@ -15,7 +15,7 @@
 
 #include <initializer_list>
 
-#include "../submodules/cpp_libs/utility/random.h"
+#include "../submodules/cpp_libs/utility/utility.h"
 
 #define MAX_GRAPH INT_MAX/2-1
 

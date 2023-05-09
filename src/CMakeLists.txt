@@ -1,13 +1,18 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.22)
 project(simpleNavigator VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
+
 #add_subdirectory(Graph ${CMAKE_BINARY_DIR}/Graph)
 add_subdirectory(GraphAlgorithms ${CMAKE_BINARY_DIR}/GraphAlgorithms)
 add_subdirectory(submodules/cpp_libs/matrix)
+
+# set(CMAKE_VERBOSE_MAKEFILE ON)
+# set(CMAKE_RULE_MESSAGES ON)
+# message("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 add_subdirectory(submodules/cpp_libs/utility)
 add_subdirectory(submodules/cpp_libs/ConsoleInterface)
 
@@ -21,4 +26,12 @@ add_executable( ${PROJECT_NAME}
         TslCompare/Compare.cc
         )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE s21_graph_algorithms.a matrix utility console_interface)
+# add_subdirectory(submodules/cpp_libs/utility)
+
+link_directories(${CMAKE_BINARY_DIR}/submodules/cpp_libs/utility)
+
+
+target_link_libraries(${PROJECT_NAME} PRIVATE s21_graph_algorithms.a)
+target_link_libraries(${PROJECT_NAME} PRIVATE matrix)
+target_link_libraries(${PROJECT_NAME} PRIVATE utility)
+target_link_libraries(${PROJECT_NAME} PRIVATE console_interface)

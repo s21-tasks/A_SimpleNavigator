@@ -19,7 +19,7 @@ s21_graph_algorithms.a: submodules
 test: submodules
 	mkdir -p build
 	@cmake -B"build" .
-	@$(MAKE) -C
+	@$(MAKE) -C build
 
 clean_graph:
 	rm -rf Graph/build
@@ -28,3 +28,4 @@ clean_algs:
 	rm -rf GraphAlgorithms/build
 
 clean: clean_graph clean_algs
+	rm -rf build
