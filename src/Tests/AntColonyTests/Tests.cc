@@ -16,7 +16,7 @@ TEST_P(AntGT, Test1) {
 }
 
 TEST(FileTest, Test1) {
-    Graph G("1.txt");
+    Graph G(SStr::RelativePath(__FILE__, "/../materials/1.txt"));
     double mean = 0.0;
     int count = 25;
     for (int k = 0; k < count; ++k) {

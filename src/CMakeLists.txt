@@ -18,7 +18,7 @@ add_executable( ${PROJECT_NAME}
         TslCompare/Compare.cc
         )
 
-link_directories(${CMAKE_BINARY_DIR}/submodules/cpp_libs/utility)
+# link_directories(${CMAKE_BINARY_DIR}/submodules/cpp_libs/utility)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/TslCompare)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/Interface)

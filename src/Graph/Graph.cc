@@ -4,10 +4,8 @@ using std::string, std::vector;
 
 namespace s21 {
 
-  Graph::Graph(bool directed, int size, float zero_probability, int max_weight) :
-          directed_(directed), matrix_(size) {
-    directed_ ? RandomDirected(size, zero_probability, max_weight) :
-    RandomUndirected(size, zero_probability, max_weight);
+  Graph::Graph(bool directed, int size, float zero_probability, int max_weight) {
+    CreateRandom(directed, size, zero_probability, max_weight);
   }
 
   Graph::Graph(const std::string &file_path) {
@@ -23,6 +21,7 @@ namespace s21 {
     if (max_weight <= 0)
       throw std::invalid_argument("Incorrect graph max weight: " + std::to_string(max_weight));
 
+    vertices_.resize(size);
     matrix_ = Matrix<int>(size);
     directed_ = directed;
     directed_ ? RandomDirected(size, zero_probability, max_weight) :

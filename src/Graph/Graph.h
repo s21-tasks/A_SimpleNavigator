@@ -7,15 +7,14 @@
 #include <queue>
 #include <iosfwd>
 #include <sstream>
-//#include "lib/matrix.h"
-#include "../submodules/cpp_libs/matrix/matrix.h"
 #include <climits>
 #include <stack>
 #include <cctype>
 
 #include <initializer_list>
 
-#include "../submodules/cpp_libs/utility/utility.h"
+#include "matrix.h"
+#include "utility.h"
 
 #define MAX_GRAPH INT_MAX/2-1
 

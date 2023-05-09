@@ -22,6 +22,16 @@ test: submodules
 	mkdir -p build
 	@cmake -B"build" .
 	@$(MAKE) -C build
+	./build/simpleNavigator
+
+tests:
+	@$(MAKE) -C Tests
+
+# ant_test:
+# 	@mkdir -p Tests/build
+# 	@cmake -B"Tests/build" Tests/AntColonyTests/.
+# 	@$(MAKE) -C Tests/build
+# 	./Tests/build/AntColonyTests
 
 clean_graph:
 	rm -rf Graph/build
@@ -31,3 +41,4 @@ clean_algs:
 
 clean: clean_graph clean_algs
 	rm -rf build
+	rm -rf Tests/build

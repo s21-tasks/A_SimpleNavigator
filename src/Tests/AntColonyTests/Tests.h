@@ -1,10 +1,9 @@
 #pragma once
 
 #include <gtest/gtest.h>
-#include "../../GraphAlgorithms/AntColonyAlgorithm/AntColonyAlgorithm.h"
-#include "../../Graph/Graph.h"
 #include <tuple>
-#include "../../GraphAlgorithms/GraphAlgorithms.h"
+#include "GraphAlgorithms.h"
+#include "m_sstr.h"
 
 namespace s21 {
 
