@@ -24,7 +24,6 @@ namespace s21 {
   private:
     static void depthSearch(const Graph &graph, const int vertex, std::vector<int>& visited);
 
-
   };
 
 

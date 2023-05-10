@@ -1,16 +1,21 @@
-all: ant graph
 
-ant:
+algorithms:
 	@mkdir -p build
-	@cmake -B"build" AntColonyTests/.
+	@cmake -B"build" AlgorithmsTests/.
 	@$(MAKE) -C build
-	./build/AntColonyTests
+	./build/AlgorithmsTests
 
 graph:
 	@mkdir -p build
 	@cmake -B"build" GraphTests/.
 	@$(MAKE) -C build
 	./build/GraphTests
+
+salesman:
+	@mkdir -p build
+	@cmake -B"build" SalesmanTests/.
+	@$(MAKE) -C build
+	./build/SalesmanTests
 
 clean:
 	rm -rf build

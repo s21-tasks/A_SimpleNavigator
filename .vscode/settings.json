@@ -70,6 +70,7 @@
         "iomanip": "cpp",
         "climits": "cpp",
         "stack": "cpp",
-        "codecvt": "cpp"
+        "codecvt": "cpp",
+        "unordered_set": "cpp"
     }
 }

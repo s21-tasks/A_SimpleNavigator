@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(AlgorythmsTests VERSION 1.0 LANGUAGES CXX)
+project(AlgorithmsTests VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -14,8 +14,7 @@ add_subdirectory(../../submodules/cpp_libs/utility ${CMAKE_BINARY_DIR}/submodule
 add_subdirectory(../../GraphAlgorithms ${CMAKE_BINARY_DIR}/GraphAlgorithms)
 
 add_executable(${PROJECT_NAME}
-        Tests.cc
-        Tests.h
+        AlgoritmsTests.cc
         )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC gtest gtest_main)

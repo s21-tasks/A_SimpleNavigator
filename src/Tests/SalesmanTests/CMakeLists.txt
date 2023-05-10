@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(AntColonyTests VERSION 1.0 LANGUAGES CXX)
+project(SalesmanTests VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -14,9 +14,11 @@ add_subdirectory(../../submodules/cpp_libs/utility ${CMAKE_BINARY_DIR}/submodule
 add_subdirectory(../../GraphAlgorithms ${CMAKE_BINARY_DIR}/GraphAlgorithms)
 
 add_executable(${PROJECT_NAME}
-        Tests.cc
-        Tests.h
+        SalesmanTests.cc
+        ../../TslCompare/Compare.cc
         )
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../../TslCompare)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC gtest gtest_main)
 target_link_libraries(${PROJECT_NAME} PUBLIC s21_graph_algorithms.a)

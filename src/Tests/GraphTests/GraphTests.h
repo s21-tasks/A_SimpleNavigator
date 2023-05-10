@@ -1,19 +1,13 @@
 #pragma once
 
-#include <gtest/gtest.h>
-#include "Graph.h"
-#include "m_sstr.h"
+#include "../Test.h"
 
 namespace s21 {
 
-class GraphGT : public testing::TestWithParam<std::tuple<bool, int, float, int>> {
-    protected:
-        Graph graph_;
+class GraphGT : public GT {
 
     public:
-        GraphGT() :
-            graph_(std::get<0>(GetParam()), std::get<1>(GetParam()),
-                    std::get<2>(GetParam()), std::get<3>(GetParam())) {}
+        GraphGT() : GT() {}
 
         void Tester() {
             int max = 0;

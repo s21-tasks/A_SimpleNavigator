@@ -14,7 +14,7 @@ add_subdirectory(../../submodules/cpp_libs/utility ${CMAKE_BINARY_DIR}/submodule
 add_subdirectory(../../Graph ${CMAKE_BINARY_DIR}/Graph)
 
 add_executable(${PROJECT_NAME}
-        Tests.cc
+        GraphTests.cc
         )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC gtest gtest_main)

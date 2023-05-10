@@ -2,8 +2,10 @@
 
 namespace s21 {
 
-
 std::vector<int> GraphAlgorithms::depthFirstSearch(const Graph &graph, const int startVertex) {
+  if (startVertex < 0 || startVertex >= graph.Size()) {
+    throw std::invalid_argument("Incorrect start vertex: " + std::to_string(startVertex));
+  }
   std::vector<int> visited;
   depthSearch(graph, startVertex, visited);
   return visited;
@@ -25,6 +27,9 @@ void GraphAlgorithms::depthSearch(const Graph &graph, const int vertex, std::vec
 }
 
 std::vector<int> GraphAlgorithms::breadthFirstSearch(const Graph &graph, const int startVertex) {
+  if (startVertex < 0 || startVertex >= graph.Size()) {
+    throw std::invalid_argument("Incorrect start vertex: " + std::to_string(startVertex));
+  }
   std::queue<int> q;
   std::vector<int> visited;
   std::vector<bool> visited_bool(graph.Size(), false);
@@ -46,6 +51,12 @@ std::vector<int> GraphAlgorithms::breadthFirstSearch(const Graph &graph, const i
 }
 
 int GraphAlgorithms::getShortestPathBetweenVertices(const Graph &graph,const int vertex1,const int vertex2) {
+  if (vertex1 < 0 || vertex1 >= graph.Size()) {
+    throw std::invalid_argument("Incorrect vertex 1: " + std::to_string(vertex1));
+  }
+  if (vertex2 < 0 || vertex2 >= graph.Size()) {
+    throw std::invalid_argument("Incorrect vertex 2: " + std::to_string(vertex2));
+  }
   std::vector<int> path_size(graph.Size(), INT_MAX);
   std::vector<bool> visited(graph.Size(), false);
   path_size[vertex1] = 0;
@@ -109,10 +120,12 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(const Graph &gra
     for (int k = 1; k < size; ++k) {
       int min = INT_MAX;
       for (int i = 0; i < size; ++i) {
-        int cell = graph(result[k - 1], i);
-        if (cell < min && cell != 0 && !visited[i]) {
-          min = cell;
-          result[k] = i;
+        for (int g = 0; g < k; ++g) {
+          int cell = graph(result[g], i);
+          if (cell < min && cell != 0 && !visited[i]) {
+            min = cell;
+            result[k] = i;
+          }
         }
       }
       visited[result[k]] = true;
