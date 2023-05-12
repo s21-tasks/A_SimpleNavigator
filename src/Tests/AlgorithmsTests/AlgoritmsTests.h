@@ -16,7 +16,6 @@ class AlgorithmsGT : public GT {
     protected:
         void VectorTest(const std::vector<int> vector) {
             ASSERT_EQ(vector.size(), graph_.Size());
-            // std::unordered_set<int> unique_set(vec.begin(), vec.end());
             ASSERT_EQ(std::unordered_set<int>(vector.begin(), vector.end()).size(), graph_.Size());
         }
 

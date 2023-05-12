@@ -3,6 +3,9 @@
 namespace s21 {
 
 std::vector<int> GraphAlgorithms::depthFirstSearch(const Graph &graph, const int startVertex) {
+  if (graph.Size() == 0) {
+    throw std::invalid_argument("Empty graph");
+  }
   if (startVertex < 0 || startVertex >= graph.Size()) {
     throw std::invalid_argument("Incorrect start vertex: " + std::to_string(startVertex));
   }
@@ -81,6 +84,9 @@ int GraphAlgorithms::getShortestPathBetweenVertices(const Graph &graph,const int
 }
 
 Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(const Graph &graph) {
+  if (graph.Size() == 0) {
+    throw std::invalid_argument("Empty graph");
+  }
   Matrix<int> solve(graph.GetMatrix());
   for (int i = 0; i < solve.GetCols(); ++i) {
     for (int j = 0; j < solve.GetCols(); ++j) {
@@ -100,17 +106,26 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(const Graph &gra
 }
 
   TsmResult GraphAlgorithms::GeneticSolveSalesmanProblem(const Graph &graph) {
+  if (graph.Size() == 0) {
+    throw std::invalid_argument("Empty graph");
+  }
     GeneticAlgorithm sol(graph);
     return sol.Execute();
   }
 
   TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(const Graph &graph) {
+    if (graph.Size() == 0) {
+      throw std::invalid_argument("Empty graph");
+    }
     AntColony<int> colony(graph.GetMatrix());
 
     return colony.Solve();
   }
 
   std::vector<int> GraphAlgorithms::GetLeastSpanningTree(const Graph &graph) {
+    if (graph.Size() == 0) {
+      throw std::invalid_argument("Empty graph");
+    }
     const int size = graph.Size();
 
     std::vector<int> result(size, 0);

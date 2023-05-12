@@ -42,3 +42,10 @@ TEST_F(FileAlgGT, Test1) {
     spbav_result_ = "results/c1_spbav.txt";
     Test();
 }
+
+TEST(Errors, Test1) {
+    Graph G(true, 100, 0.5, 10);
+    ASSERT_ANY_THROW(GraphAlgorithms::breadthFirstSearch(G, -1));
+    ASSERT_ANY_THROW(GraphAlgorithms::breadthFirstSearch(G, 150));
+    ASSERT_ANY_THROW(GraphAlgorithms::breadthFirstSearch(Graph(), 150));
+}
