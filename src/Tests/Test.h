@@ -33,8 +33,12 @@ class FileGT : public testing::Test {
         FileGT() {}
 
         void Test() {
-            graph_.LoadGraphFromFile(GT::FilePath(file_name_));
+            Load();
             Tester();
+        }
+
+        void Load() {
+            graph_.LoadGraphFromFile(GT::FilePath(file_name_));
         }
     
 };

@@ -33,7 +33,7 @@ TEST_P(AlgorithmsGT, Test1) {
 }
 
 
-TEST_F(FileAlgGT, Test1) {
+TEST_F(FileAlgGT, TestC1) {
     file_name_ = "c1.txt";
     bfs_result_.emplace_back(0, std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
     dfs_result_.emplace_back(0, std::vector<int>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
@@ -43,9 +43,46 @@ TEST_F(FileAlgGT, Test1) {
     Test();
 }
 
-TEST(Errors, Test1) {
+TEST_F(FileAlgGT, TestCU1) {
+    file_name_ = "cu1.txt";
+    Load();
+    ASSERT_ANY_THROW(GraphAlgorithms::GetLeastSpanningTree(graph_));
+    ASSERT_EQ(GraphAlgorithms::solveTravelingSalesmanProblem(graph_).distance, INFINITY);
+}
+
+TEST(Errors, BFS) {
     Graph G(true, 100, 0.5, 10);
     ASSERT_ANY_THROW(GraphAlgorithms::breadthFirstSearch(G, -1));
     ASSERT_ANY_THROW(GraphAlgorithms::breadthFirstSearch(G, 150));
-    ASSERT_ANY_THROW(GraphAlgorithms::breadthFirstSearch(Graph(), 150));
+    ASSERT_ANY_THROW(GraphAlgorithms::breadthFirstSearch(Graph(), 0));
+}
+
+TEST(Errors, DFS) {
+    Graph G(true, 100, 0.5, 10);
+    ASSERT_ANY_THROW(GraphAlgorithms::depthFirstSearch(G, -1));
+    ASSERT_ANY_THROW(GraphAlgorithms::depthFirstSearch(G, 150));
+    ASSERT_ANY_THROW(GraphAlgorithms::depthFirstSearch(Graph(), 0));
+}
+
+TEST(Errors, Salesman) {
+    ASSERT_ANY_THROW(GraphAlgorithms::GeneticSolveSalesmanProblem(Graph()));
+    ASSERT_ANY_THROW(GraphAlgorithms::solveTravelingSalesmanProblem(Graph()));
+    // ASSERT_ANY_THROW(GraphAlgorithms::???(Graph()));
+}
+
+TEST(Errors, LST) {
+    ASSERT_ANY_THROW(GraphAlgorithms::GetLeastSpanningTree(Graph()));
+}
+
+TEST(Errors, SPBV) {
+    ASSERT_ANY_THROW(GraphAlgorithms::getShortestPathBetweenVertices(Graph(), 0, 0));
+    Graph G(true, 100, 0.5, 10);
+    ASSERT_ANY_THROW(GraphAlgorithms::getShortestPathBetweenVertices(G, -1, 5));
+    ASSERT_ANY_THROW(GraphAlgorithms::getShortestPathBetweenVertices(G, 150, 5));
+    ASSERT_ANY_THROW(GraphAlgorithms::getShortestPathBetweenVertices(G, 50, 150));
+    ASSERT_ANY_THROW(GraphAlgorithms::getShortestPathBetweenVertices(G, 30, -5));
+}
+
+TEST(Errors, SPBAV) {
+    ASSERT_ANY_THROW(GraphAlgorithms::getShortestPathsBetweenAllVertices(Graph()));
 }

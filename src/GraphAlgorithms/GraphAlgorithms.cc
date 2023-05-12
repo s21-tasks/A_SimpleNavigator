@@ -145,6 +145,11 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(const Graph &gra
       }
       visited[result[k]] = true;
     }
+    for (auto v : visited) {
+      if (!v) {
+        throw std::invalid_argument("GetLeastSpanningTree can not find sapnung tree");
+      }
+    }
 
     return result;
   }
