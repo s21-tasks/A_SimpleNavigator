@@ -38,28 +38,26 @@ TEST_P(AlgorithmsGT, SalesmanProblem) {
 
 TEST_F(FileSalesmanGT, Test1) {
     file_name_ = "c1.txt";
+    salesman_loop_count_ = 10;
     salesman_distance_ = 253.0;
     Test();
 }
 
-// TEST_F(FileSalesmanGT, Test2) {
-//     file_name_ = "c2.txt";
-//     salesman_distance_ = 253.0;
-//     Test();
-// }
+TEST_F(FileSalesmanGT, Test2) {
+    file_name_ = "c2.txt";
+    salesman_loop_count_ = 3;
+    salesman_distance_ = 253.0;
+    Test();
+}
 
 TEST_F(FileSalesmanGT, Test7) {
+    salesman_loop_count_ = 15;
     file_name_ = "c7.txt";
     Test();
 }
 
-// TEST_F(FileSalesmanGT, Test8) {
-//     file_name_ = "c8.txt";
-//     salesman_distance_ = 253.0;
-//     Test();
-// }
-
 TEST_F(FileSalesmanGT, Test9) {
+    salesman_loop_count_ = 25;
     file_name_ = "c9.txt";
     Test();
 }

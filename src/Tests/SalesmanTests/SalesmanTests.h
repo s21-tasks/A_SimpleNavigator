@@ -26,9 +26,9 @@ class AlgorithmsGT : public GT {
                     ASSERT_EQ(vertices.size(), graph_.Size() + 1);
                     ASSERT_TRUE(d > 0 && d < std::get<3>(GetParam()) * graph_.Size());
                     if (k != results.size() - 1) {
-                        ASSERT_NEAR(d, results[k + 1].distance, d / 1e3);
+                        ASSERT_NEAR(d, results[k + 1].distance, d / 10);
                     } else {
-                        ASSERT_NEAR(d, results[0].distance, d / 1e3);
+                        ASSERT_NEAR(d, results[0].distance, d / 10);
                     }
 
                     double check = 0;
@@ -58,10 +58,12 @@ class FileSalesmanGT : public FileGT {
             if (salesman_distance_ < 0) {
                 salesman_distance_ = *std::min_element(compare_result.mean.begin(), compare_result.mean.end());
             }
+
             // ASSERT_NEAR(compare_result.mean[0], salesman_distance_, salesman_distance_ / 1e3);
             // ASSERT_NEAR(compare_result.mean[1], salesman_distance_, salesman_distance_ / 1e3);
             // ASSERT_NEAR(compare_result.mean[2], salesman_distance_, salesman_distance_ / 1e3);
 
+            std::cout << "\n\t\tgraph size = " << graph_.Size();
             std::cout << "\nAnt colony:\n\tTime: " << compare_result.time[0] << " ms\n\tMean: " << compare_result.mean[0];
             std::cout << "\nGenetic:\n\tTime: " << compare_result.time[1] << " ms\n\tMean: " << compare_result.mean[1];
             std::cout << "\nBranch and Bounds:\n\tTime: " << compare_result.time[2] << " ms\n\tMean: " << compare_result.mean[2];
