@@ -16,6 +16,9 @@ namespace s21 {
       distance = other.distance;
       return *this;
     }
+    bool operator<(const TsmResult &other) const {
+      return distance < other.distance;
+    }
   };
 
 } // namespace s21

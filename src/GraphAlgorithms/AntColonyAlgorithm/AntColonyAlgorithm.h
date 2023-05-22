@@ -2,6 +2,7 @@
 
 //#include "../GraphAlgorithms.h"
 #include "../helpers.h"
+#include <limits>
 
 namespace s21 {
 
@@ -140,13 +141,17 @@ void Ant<T>::Run() {
 
     while (visited_ < colony_->size_ - 1) {
         if (!RandomVisit(CountProbabilities())) {
-            route_.distance = INFINITY;
+            route_.distance = std::numeric_limits<double>::infinity();;
             return;
         }
     }
 
-    route_.distance += colony_->graph_(position_, start_);
-    route_.vertices[visited_ + 1] = start_;
+    if (colony_->graph_(route_.vertices[visited_], start_) == 0) {
+        route_.distance = std::numeric_limits<double>::infinity();
+    } else {
+        route_.distance += colony_->graph_(position_, start_);
+        route_.vertices[visited_ + 1] = start_;
+    }
 }
 
 template<class T>

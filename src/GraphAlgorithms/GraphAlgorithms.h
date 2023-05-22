@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "GeneticAlgorithm/GeneticAlgorithm.h"
 #include "AntColonyAlgorithm/AntColonyAlgorithm.h"
+#include "BnBAlgorithm/BnBAlgorithm.h"
 #include "helpers.h"
 
 namespace s21 {
@@ -19,6 +20,7 @@ namespace s21 {
     static std::vector<int> GetLeastSpanningTree(const Graph &graph);
     static TsmResult solveTravelingSalesmanProblem(const Graph &graph);
     static TsmResult GeneticSolveSalesmanProblem(const Graph &graph);
+    static TsmResult BnBSolveSalesmanProblem(const Graph &graph);
 
 
   private:

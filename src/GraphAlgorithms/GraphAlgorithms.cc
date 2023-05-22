@@ -109,17 +109,27 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(const Graph &gra
   if (graph.Size() == 0) {
     throw std::invalid_argument("Empty graph");
   }
-    GeneticAlgorithm sol(graph);
-    return sol.Execute();
+
+  GeneticAlgorithm sol(graph);
+  return sol.Execute();
   }
 
   TsmResult GraphAlgorithms::solveTravelingSalesmanProblem(const Graph &graph) {
     if (graph.Size() == 0) {
       throw std::invalid_argument("Empty graph");
     }
+  
     AntColony<int> colony(graph.GetMatrix());
-
     return colony.Solve();
+  }
+
+  TsmResult GraphAlgorithms::BnBSolveSalesmanProblem(const Graph &graph) {
+    if (graph.Size() == 0) {
+      throw std::invalid_argument("Empty graph");
+    }
+  
+    BnB<int> bnb(graph.GetMatrix());
+    return bnb.Solve();
   }
 
   std::vector<int> GraphAlgorithms::GetLeastSpanningTree(const Graph &graph) {

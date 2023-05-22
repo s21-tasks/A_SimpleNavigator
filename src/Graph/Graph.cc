@@ -80,7 +80,7 @@ namespace s21 {
         }
       }
       if (file.peek() != '\n' && file.peek() != EOF) {
-        throw std::invalid_argument("invalid file struct!");
+        throw std::invalid_argument("invalid file struct!" + std::to_string(k));
       }
     }
     directed_ = IsDirected();

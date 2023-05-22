@@ -15,6 +15,7 @@ set(SOURCES
         GeneticAlgorithm/GeneticAlgorithm.cc
         GeneticAlgorithm/GeneticAlgorithm.h
         AntColonyAlgorithm/AntColonyAlgorithm.h
+        BnBAlgorithm/BnBAlgorithm.h
         helpers.h
         )
 
