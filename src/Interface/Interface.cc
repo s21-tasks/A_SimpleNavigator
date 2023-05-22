@@ -62,8 +62,8 @@ Interface::Interface() {
     home_menu->Connect(10, AddInput<int>("number of iterations", [&] (int N) {
             auto result = Compare::Time(graph_, N);
             std::cout << "Ant colony: " << result[0] << " ms\n";
-            std::cout << "2: " << result[0] << " ms\n";
-            std::cout << "3: " << result[0] << " ms\n";
+            std::cout << "Genetic: " << result[1] << " ms\n";
+            std::cout << "Branch and Bound: " << result[2] << " ms\n";
         },
         home_menu));
 }
