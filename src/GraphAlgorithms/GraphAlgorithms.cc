@@ -110,7 +110,7 @@ Matrix<int> GraphAlgorithms::getShortestPathsBetweenAllVertices(const Graph &gra
     throw std::invalid_argument("Empty graph");
   }
 
-  GeneticAlgorithm sol(graph);
+  GeneticAlgorithm<int> sol(graph);
   return sol.Execute();
   }
 

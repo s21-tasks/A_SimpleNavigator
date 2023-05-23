@@ -12,7 +12,6 @@ add_subdirectory(../Graph ${CMAKE_BINARY_DIR}/Graph)
 set(SOURCES
         GraphAlgorithms.cc
         GraphAlgorithms.h
-        GeneticAlgorithm/GeneticAlgorithm.cc
         GeneticAlgorithm/GeneticAlgorithm.h
         AntColonyAlgorithm/AntColonyAlgorithm.h
         BnBAlgorithm/BnBAlgorithm.h

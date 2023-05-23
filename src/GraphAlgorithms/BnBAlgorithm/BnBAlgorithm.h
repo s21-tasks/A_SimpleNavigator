@@ -24,7 +24,6 @@ class BnB {
         void Initialization();
 };
 
-
 template<class T>
 TsmResult BnB<T>::Solve() {
     Initialization();
