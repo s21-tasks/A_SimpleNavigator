@@ -8,111 +8,113 @@ template<class T>
 class BnB {
 
     public:
-        BnB(const Matrix<T> &graph) : graph_(graph), size_(graph.GetCols()) {}
+        BnB(const Matrix<T> &graph) : graph_(graph), size_(graph.GetCols()), route_(size_ + 1) {}
 
         TsmResult Solve();
     
     private:
         const Matrix<T> &graph_;
         int size_;
+        TsmResult result_;
+        std::vector<int> route_;
 
-        void BnBSearch(int currentVertex, double currentDistance, std::vector<int>& route, TsmResult& bestResult);
-        void UpdateBestResult(const std::vector<int>& route, double currentDistance, TsmResult& bestResult);
-        double LowerBound(const std::vector<int>& route, int currentVertex);
-        void SwapVertices(std::vector<int>& route, int index1, int index2);
+        void BnBSearch(int current, double distance, std::vector<bool> visited);
+        void UpdateResult(double distance);
+        double LowerBound(int current, const std::vector<bool> &visited);
+        void Initialization();
 };
 
 
 template<class T>
 TsmResult BnB<T>::Solve() {
+    Initialization();
 
-    std::vector<int> route(size_ + 1);  // route including returning to the starting vertex
-
-    std::iota(route.begin(), route.end(), 0);  // Initialize route with vertices in order
-    route.back() = 0;
-
-    TsmResult bestResult;
-    bestResult.distance = std::numeric_limits<double>::infinity();
-
-    // Start the branch and bound search
-    BnBSearch(0, 0.0, route, bestResult);
-    // std::cout << '\n';
-    return bestResult;
+    BnBSearch(0, 0.0, std::vector<bool>(size_, false));
+    return result_;
 }
 
 template<class T>
-void BnB<T>::BnBSearch(int currentVertex, double currentDistance, std::vector<int>& route, TsmResult& bestResult) {
-    if (currentVertex == size_ - 2) {
-        UpdateBestResult(route, currentDistance, bestResult);
+void BnB<T>::Initialization() {
+    std::iota(route_.begin(), route_.end(), 0);
+    route_.back() = 0;
+
+    result_.distance = std::numeric_limits<double>::infinity();
+}
+
+template<class T>
+void BnB<T>::BnBSearch(int current, double distance, std::vector<bool> visited) {
+    if (distance >= result_.distance) {
         return;
     }
 
-    for (int nextVertex = currentVertex + 1; nextVertex < size_; ++nextVertex) {
-        if (currentDistance + LowerBound(route, currentVertex) >= bestResult.distance ||
-            graph_(route[currentVertex], route[nextVertex]) == 0) {
-            continue;
+    if (current == size_ - 2) {
+        UpdateResult(distance);
+        return;
+    }
+
+    visited[route_[current]] = true;
+
+    if (distance + LowerBound(current, visited) >= result_.distance) {
+        return;
+    }
+
+    for (int next = current + 1; next < size_; ++next) {
+        if (graph_(route_[current], route_[next]) != 0) {
+            std::swap(route_[current + 1], route_[next]);
+            BnBSearch(current + 1, graph_(route_[current], route_[current + 1]) + distance, visited);
+            std::swap(route_[current + 1], route_[next]);
         }
-
-        // Update current route and distance
-        // SwapVertices(route, currentVertex + 1, nextVertex);
-        std::swap(route[currentVertex + 1], route[nextVertex]);
-        double edgeWeight = graph_(route[currentVertex], route[currentVertex + 1]);
-        double newDistance = currentDistance + edgeWeight;
-
-        // Recursive call to explore the next vertex
-        BnBSearch(currentVertex + 1, newDistance, route, bestResult);
-
-        // Restore the current route and distance
-        // SwapVertices(route, currentVertex + 1, nextVertex);
-        std::swap(route[currentVertex + 1], route[nextVertex]);
     }
 }
 
 template<class T>
-void BnB<T>::UpdateBestResult(const std::vector<int>& route, double currentDistance, TsmResult& bestResult) {
-    int last = graph_(route[size_ - 1], route[size_]);
-    int plast = graph_(route[size_ - 2], route[size_ - 1]);
+void BnB<T>::UpdateResult(double distance) {
+    int last_1 = graph_(route_[size_ - 1], route_[size_]);
+    int last_2 = graph_(route_[size_ - 2], route_[size_ - 1]);
 
-    if (last != 0 && plast != 0 && (currentDistance += last + plast) < bestResult.distance) {
-        bestResult.distance = currentDistance;
-        bestResult.vertices = route;
+    if (last_1 != 0 && last_2 != 0 && (distance += last_1 + last_2) < result_.distance) {
+        result_.distance = distance;
+        result_.vertices = route_;
     }
 }
 
 template<class T>
-double BnB<T>::LowerBound(const std::vector<int>& route, int currentVertex) {
-    double lowerBound = 0.0;
+double BnB<T>::LowerBound(int current, const std::vector<bool>& visited) {
+    double lower_bound = 0.0;
 
-    // Calculate the sum of the two minimum edge weights for each unvisited vertex
+    double smallest = std::numeric_limits<double>::infinity();
+
+    for (int j = 1; j < size_; ++j) {
+        if (!visited[j] && graph_(route_[current], j) > 0 && smallest > (double)graph_(route_[current], j)) {
+            smallest = (double)graph_(route_[current], j);
+        }
+    }
+    lower_bound += smallest;
+
     for (int i = 1; i < size_; ++i) {
-        if (std::find(route.begin(), route.end(), i) == route.end()) {
-            double minWeight1 = std::numeric_limits<double>::infinity();
-            double minWeight2 = std::numeric_limits<double>::infinity();
+        if (!visited[i]) {
+            smallest = std::numeric_limits<double>::infinity();
+            
+            if (graph_(i, 0) > 0 && smallest > (double)graph_(i, 0)) {
+                smallest = (double)graph_(i, 0);
+            }
 
-            for (int j = 0; j < size_; ++j) {
-                if (i != j && std::find(route.begin(), route.end(), j) == route.end()) {
-                    double weight = graph_(i, j) == 0 ? std::numeric_limits<double>::infinity() : (double)graph_(i, j);
-                    if (weight < minWeight1) {
-                        minWeight2 = minWeight1;
-                        minWeight1 = weight;
-                    } else if (weight < minWeight2) {
-                        minWeight2 = weight;
+            for (int j = 1; j < size_; ++j) {
+                if (!visited[j]) {
+                    if (graph_(i, j) > 0 && smallest > (double)graph_(i, j)) {
+                        smallest = (double)graph_(i, j);
+                    }
+                    if (graph_(j, i) > 0 && smallest > (double)graph_(j, i)) {
+                        smallest = (double)graph_(j, i);
                     }
                 }
             }
-
-            lowerBound += minWeight1 + minWeight2;
+            lower_bound += smallest;
         }
     }
 
-    return lowerBound;
+    return lower_bound;
 }
 
-template<class T>
-void BnB<T>::SwapVertices(std::vector<int>& route, int index1, int index2) {
-    int temp = route[index1];
-    route[index1] = route[index2];
-    route[index2] = temp;
-}
 
 } // namespace s21
