@@ -131,8 +131,8 @@ namespace s21 {
 
       for (int i = 1; i < POPULATION_SIZE; ++i) {
 
-        int parent1Index = Random::Int(1, POPULATION_SIZE);
-        int parent2Index = Random::Int(1, POPULATION_SIZE);
+        int parent1Index = Random::Int(0, POPULATION_SIZE-1);
+        int parent2Index = Random::Int(0, POPULATION_SIZE-1);
 
         std::vector<int> child = Crossover(parent1Index, parent2Index);
 
