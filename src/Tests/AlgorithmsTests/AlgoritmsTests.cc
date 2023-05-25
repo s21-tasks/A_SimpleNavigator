@@ -67,7 +67,7 @@ TEST(Errors, DFS) {
 TEST(Errors, Salesman) {
     ASSERT_ANY_THROW(GraphAlgorithms::GeneticSolveSalesmanProblem(Graph()));
     ASSERT_ANY_THROW(GraphAlgorithms::solveTravelingSalesmanProblem(Graph()));
-    // ASSERT_ANY_THROW(GraphAlgorithms::???(Graph()));
+    ASSERT_ANY_THROW(GraphAlgorithms::BnBSolveSalesmanProblem(Graph()));
 }
 
 TEST(Errors, LST) {

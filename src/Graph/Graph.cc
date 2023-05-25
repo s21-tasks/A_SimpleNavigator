@@ -141,10 +141,6 @@ namespace s21 {
     return;
   }
 
-  int Graph::GraphSize() {
-    return matrix_.GetCols();
-  }
-
   int& Graph::operator()(int row, int col) {
     return matrix_(row,col);
   }
