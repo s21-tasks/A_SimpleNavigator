@@ -1,5 +1,5 @@
 
-all: test
+all: interface
 
 submodules:
 	cd ..
@@ -8,24 +8,22 @@ submodules:
 	cd src
 
 
-s21_graph.a: submodules
+s21_graph.a:
 	@mkdir -p Graph/build
 	@cmake -B"Graph/build" Graph/.
 	@$(MAKE) -C Graph/build s21_graph.a
 
-s21_graph_algorithms.a: submodules
+s21_graph_algorithms.a:
 	@mkdir -p GraphAlgorithms/build
 	@cmake -B"GraphAlgorithms/build" GraphAlgorithms/.
 	@$(MAKE) -C GraphAlgorithms/build s21_graph_algorithms.a
 
-test: submodules
+interface:
 	mkdir -p build
 	@cmake -B"build" .
 	@$(MAKE) -C build
 	./build/simpleNavigator
 
-tests:
-	@$(MAKE) -C Tests
 
 # ant_test:
 # 	@mkdir -p Tests/build
