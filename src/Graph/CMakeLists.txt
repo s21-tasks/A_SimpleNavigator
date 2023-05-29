@@ -11,9 +11,7 @@ add_subdirectory(../submodules/cpp_libs/matrix ${CMAKE_BINARY_DIR}/matrix)
 add_subdirectory(../submodules/cpp_libs/utility ${CMAKE_BINARY_DIR}/utility)
 
 
-add_custom_target(test
-        COMMAND <test command>
-        )
+
 
 add_library(${PROJECT_NAME} STATIC
         Graph.cc

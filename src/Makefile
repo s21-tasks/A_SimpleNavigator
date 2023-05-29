@@ -40,3 +40,6 @@ clean_algs:
 clean: clean_graph clean_algs
 	rm -rf build
 	rm -rf Tests/build
+
+graph_test:
+	g++ -std=c++17 Graph/Graph.h Graph/Graph.cc Tests/GraphTests/GraphTests.cc Tests/GraphTests/GraphTests.h submodules/cpp_libs/matrix/matrix.h submodules/cpp_libs/utility/m_random.h submodules/cpp_libs/utility/m_sstr.h submodules/cpp_libs/utility/m_time.h

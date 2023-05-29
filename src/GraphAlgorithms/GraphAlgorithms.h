@@ -8,7 +8,6 @@
 #include "helpers.h"
 
 namespace s21 {
-
 /**
 * @class GraphAlgorithms
 * @brief Provides various graph algorithms.

@@ -34,7 +34,7 @@ std::vector<int> GraphAlgorithms::breadthFirstSearch(const Graph &graph, const i
     throw std::invalid_argument("Incorrect start vertex: " + std::to_string(startVertex));
   }
   std::queue<int> q;
-  std::vector<int> visited;
+  std::vector<int> visited{startVertex};
   std::vector<bool> visited_bool(graph.Size(), false);
   q.push(startVertex);
   visited_bool[startVertex] = true;

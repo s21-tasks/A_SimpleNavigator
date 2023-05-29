@@ -14,8 +14,9 @@ namespace s21 {
     const int NUM_ITERATIONS = 1500;
     const double MUTATION_RATE = 0.05;
 
-    const Graph &graph;
+    Graph graph;
     Matrix<int> population;
+    int maxi_size;
 
   public:
     GeneticAlgorithm() = delete;
@@ -39,7 +40,19 @@ namespace s21 {
 
 
   template<class T>
-  GeneticAlgorithm<T>::GeneticAlgorithm(const Graph &graph_) : graph(graph_) {}
+  GeneticAlgorithm<T>::GeneticAlgorithm(const Graph &graph_) : graph(graph_), maxi_size(0) {
+    for (int i = 0; i < graph.Size(); ++i) {
+      for (int j = 0; j < graph.Size(); ++j) {
+        maxi_size+=graph(i,j);
+      }
+    }
+    for (int i = 0; i < graph.Size(); ++i) {
+      for (int j = 0; j < graph.Size(); ++j) {
+        if (!graph(i,j))
+          graph(i,j) = maxi_size;
+      }
+    }
+  }
 
   template<class T>
   void GeneticAlgorithm<T>::GeneratePopulation() {
@@ -153,6 +166,11 @@ namespace s21 {
       ans.vertices[i] = population(sol_index, i);
     }
     ans.distance = RouteLength(sol_index);
+    if (ans.distance > maxi_size) {
+      ans.distance = std::numeric_limits<float>::infinity();
+      ans.vertices = std::vector<int>();
+    }
+
     return ans;
   }
 
