@@ -197,6 +197,7 @@ namespace s21 {
     for (int i = 0; i < population.GetCols(); ++i) {
       ans.vertices[i] = population(sol_index, i);
     }
+    ans.vertices.push_back(ans.vertices[0]);
     ans.distance = RouteLength(sol_index);
     if (ans.distance > maxi_size) {
       ans.distance = std::numeric_limits<float>::infinity();
