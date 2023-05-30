@@ -4,12 +4,37 @@
 
 namespace s21 {
 
+/**
+* @class BnB
+* @brief Implements the Branch and Bound algorithm for solving the Traveling Salesman Problem.
+*
+* The BnB class represents the Branch and Bound algorithm for finding the optimal solution
+* to the Traveling Salesman Problem on a graph represented by a matrix. The algorithm explores
+* the solution space using a branch and bound strategy to find the shortest tour. The class provides
+* a method for running the algorithm and accessing the result.
+* @tparam T The type of the matrix elements.
+*/
 template<class T>
 class BnB {
 
     public:
+        /**
+        * @brief Constructor for the BnB class.
+        *
+        * Constructs a BnB object with the specified graph.
+        *
+        * @param graph The graph represented as a matrix.
+        */
         BnB(const Matrix<T> &graph) : graph_(graph), size_(graph.GetCols()), route_(size_ + 1) {}
 
+        /**
+         * @brief Solve the Traveling Salesman Problem using the Branch and Bound algorithm.
+         *
+         * This method runs the Branch and Bound algorithm to find the optimal tour for the Traveling Salesman Problem.
+         * It returns the result as a TsmResult object, which contains the best route found by the algorithm.
+         *
+         * @return The result of the Branch and Bound algorithm as a TsmResult object.
+         */
         TsmResult Solve();
     
     private:

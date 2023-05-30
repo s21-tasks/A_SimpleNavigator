@@ -7,6 +7,16 @@
 
 
 namespace s21 {
+
+  /**
+  * @class GeneticAlgorithm
+  * @brief Implements the Genetic Algorithm for solving the Traveling Salesman Problem.
+  * The GeneticAlgorithm class represents the Genetic Algorithm for finding an approximate solution
+  * to the Traveling Salesman Problem on a given graph. The algorithm evolves a population of routes
+  * through selection, crossover, and mutation operations to improve the quality of the solutions.
+  * The class provides methods for executing the algorithm and accessing the result.
+  * @tparam T The type of the graph elements.
+  */
   template<class T>
   class GeneticAlgorithm {
 
@@ -19,10 +29,32 @@ namespace s21 {
     int maxi_size;
 
   public:
+    /**
+    * @brief Deleted default constructor.
+    *
+    * The default constructor is deleted to prevent creating an instance without a graph.
+    */
     GeneticAlgorithm() = delete;
 
+    /**
+     * @brief Constructor for the GeneticAlgorithm class.
+     *
+     * Constructs a GeneticAlgorithm object with the specified graph.
+     *
+     * @param graph The graph to solve the Traveling Salesman Problem.
+     */
     explicit GeneticAlgorithm(const Graph &graph_);
 
+
+    /**
+     * @brief Execute the Genetic Algorithm to solve the Traveling Salesman Problem.
+     *
+     * This method runs the Genetic Algorithm to find an approximate solution to the Traveling Salesman Problem.
+     * It evolves a population of routes through selection, crossover, and mutation operations to improve the quality
+     * of the solutions. The result is returned as a TsmResult object, which contains the best route found by the algorithm.
+     *
+     * @return The result of the Genetic Algorithm as a TsmResult object.
+     */
     TsmResult Execute();
 
   private:

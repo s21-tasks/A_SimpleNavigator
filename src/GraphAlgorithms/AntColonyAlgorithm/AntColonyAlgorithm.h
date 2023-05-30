@@ -8,13 +8,45 @@ namespace s21 {
 template<class T>
 class Ant;
 
+/**
+* @class AntColony
+* @brief Implements the Ant Colony Optimization algorithm.
+*
+* The AntColony class represents an Ant Colony Optimization algorithm for solving optimization problems
+* on a graph represented by a matrix. It uses a colony of ants to iteratively construct solutions
+* and update pheromone levels on graph edges. The class provides methods for initializing and running
+* the algorithm, as well as accessing the result.
+* @tparam T The type of the matrix elements.
+*/
 template<class T>
 class AntColony {
 
     public:
+        /**
+        * @brief Constructor for the AntColony class.
+        *
+        * Constructs an AntColony object with the specified parameters.
+        *
+        * @param graph The graph represented as a matrix.
+        * @param alpha The alpha parameter, pheromone influence (default: 0.8).
+        * @param beta The beta parameter, edge weight influence (default: 1.2).
+        * @param rho The rho parameter, intensity of evaporation of pheromones (default: 0.5).
+        * @param iterations The number of iterations to perform (default: 500).
+        * @param ants_count_k The number of ants in the colony is product of ants_count_k and graph size (default: 1).
+        * @param Q_k The Q parameter, the number of pheromones in one ant is product of the Q_k to the average weight of the edge (default: 0.6).
+        * @param default_pheromone The default pheromone level on edges (default: 0.6).
+        */
         AntColony(const Matrix<T> &graph, double alpha = 0.8, double beta = 1.2,
                 double rho = 0.5, int iterations = 500, int ants_count_k = 1, double Q_k = 0.6, double defult_pheromone = 0.6);
 
+        /**
+         * @brief Solve the optimization problem using the Ant Colony Optimization algorithm.
+         *
+         * This method runs the Ant Colony Optimization algorithm for the specified number of iterations
+         * and returns the result as a TsmResult object, which contains the best route found by the algorithm.
+         *
+         * @return The result of the Ant Colony Optimization algorithm as a TsmResult object.
+         */
         TsmResult Solve();
     
     private:
