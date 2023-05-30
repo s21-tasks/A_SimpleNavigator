@@ -39,7 +39,13 @@ Interface::Interface() {
         "Comparison of methods for solving the traveling salesman problem"});
 
     home_menu->Connect(0, AddInput(new OneValueInput<std::string>(this, home_menu,
-        [&] (std::string &path) { graph_.LoadGraphFromFile(path); },
+        [&] (std::string &path) {
+            try {
+                graph_.LoadGraphFromFile(path);
+            } catch (...) {
+                graph_.LoadGraphFromFile("../materials/test_files/" + path);
+            }
+        },
         "the path to the file")));
 
     home_menu->Connect(1, AddInput(new RandomGraph(this, home_menu)));

@@ -1,5 +1,5 @@
 
-all: interface
+all: interface start
 
 submodules:
 	cd ..
@@ -18,10 +18,15 @@ s21_graph_algorithms.a:
 	@$(MAKE) -C GraphAlgorithms/build s21_graph_algorithms.a
 
 interface:
-	mkdir -p build
-	@cmake -B"build" .
-	@$(MAKE) -C build
-	./build/simpleNavigator
+	mkdir -p ../build
+	@cmake -B"../build" .
+	@$(MAKE) -C ../build
+
+dist:
+	tar czf ../dist.tar *
+
+start:
+	./../build/simpleNavigator
 
 clean_graph:
 	rm -rf Graph/build
@@ -33,6 +38,6 @@ test:
 	@$(MAKE) -C Tests
 
 clean: clean_graph clean_algs
-	rm -rf build
+	rm -rf ../build
 	@$(MAKE) clean -C Tests
 	
