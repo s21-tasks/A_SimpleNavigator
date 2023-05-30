@@ -13,8 +13,8 @@
 
 #include <initializer_list>
 
-#include "matrix.h"
-#include "utility.h"
+#include "Matrix.h"
+#include "Utility.h"
 
 #define MAX_GRAPH INT_MAX/2-1
 

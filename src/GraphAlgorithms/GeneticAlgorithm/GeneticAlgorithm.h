@@ -3,7 +3,7 @@
 
 #include "../GraphAlgorithms.h"
 #include "../../Graph/Graph.h"
-#include "../helpers.h"
+#include "../Helpers.h"
 
 
 namespace s21 {

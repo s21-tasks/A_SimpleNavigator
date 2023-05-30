@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../helpers.h"
+#include "../Helpers.h"
 
 namespace s21 {
 

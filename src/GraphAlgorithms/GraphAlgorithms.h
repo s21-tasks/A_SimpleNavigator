@@ -5,7 +5,7 @@
 #include "GeneticAlgorithm/GeneticAlgorithm.h"
 #include "AntColonyAlgorithm/AntColonyAlgorithm.h"
 #include "BnBAlgorithm/BnBAlgorithm.h"
-#include "helpers.h"
+#include "Helpers.h"
 
 namespace s21 {
 /**

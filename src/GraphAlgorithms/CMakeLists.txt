@@ -8,8 +8,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(../Graph ${CMAKE_BINARY_DIR}/Graph)
-#add_subdirectory(../submodules/cpp_libs/matrix ${CMAKE_BINARY_DIR}/matrix)
-#add_subdirectory(../submodules/cpp_libs/utility ${CMAKE_BINARY_DIR}/utility)
 
 set(SOURCES
         GraphAlgorithms.cc
@@ -17,7 +15,7 @@ set(SOURCES
         GeneticAlgorithm/GeneticAlgorithm.h
         AntColonyAlgorithm/AntColonyAlgorithm.h
         BnBAlgorithm/BnBAlgorithm.h
-        helpers.h
+        Helpers.h
         )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
@@ -26,7 +24,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
         OUTPUT_NAME s21_graph_algorithms
         PREFIX ""
         )
+
 target_link_libraries(${PROJECT_NAME} PUBLIC s21_graph.a)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-#target_link_libraries(${PROJECT_NAME} PUBLIC matrix)
-#target_link_libraries(${PROJECT_NAME} PUBLIC utility)

@@ -3,7 +3,7 @@
 #include "ConsoleInterface.h"
 #include "Graph.h"
 #include "GraphAlgorithms.h"
-#include "utility.h"
+#include "Utility.h"
 #include "Compare.h"
 
 namespace s21 {

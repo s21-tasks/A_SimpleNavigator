@@ -2,7 +2,7 @@
 
 #include "Graph.h"
 #include "GraphAlgorithms.h"
-#include "utility.h"
+#include "Utility.h"
 
 namespace s21 {
 
