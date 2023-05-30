@@ -7,7 +7,6 @@ submodules:
 	git submodule update --recursive --remote
 	cd src
 
-
 s21_graph.a:
 	@mkdir -p Graph/build
 	@cmake -B"Graph/build" Graph/.
@@ -24,22 +23,16 @@ interface:
 	@$(MAKE) -C build
 	./build/simpleNavigator
 
-
-# ant_test:
-# 	@mkdir -p Tests/build
-# 	@cmake -B"Tests/build" Tests/AntColonyTests/.
-# 	@$(MAKE) -C Tests/build
-# 	./Tests/build/AntColonyTests
-
 clean_graph:
 	rm -rf Graph/build
 
 clean_algs:
 	rm -rf GraphAlgorithms/build
 
+test:
+	@$(MAKE) -C Tests
+
 clean: clean_graph clean_algs
 	rm -rf build
-	rm -rf Tests/build
-
-graph_test:
-	g++ -std=c++17 Graph/Graph.h Graph/Graph.cc Tests/GraphTests/GraphTests.cc Tests/GraphTests/GraphTests.h submodules/cpp_libs/matrix/matrix.h submodules/cpp_libs/utility/m_random.h submodules/cpp_libs/utility/m_sstr.h submodules/cpp_libs/utility/m_time.h
+	@$(MAKE) clean -C Tests
+	

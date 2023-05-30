@@ -14,7 +14,7 @@ TEST_P(AlgorithmsGT, Test1) {
 
     int first = Random::Int(0, std::get<1>(GetParam()) - 1);
 
-    // VectorTest(GraphAlgorithms::breadthFirstSearch(graph_, first));
+    VectorTest(GraphAlgorithms::breadthFirstSearch(graph_, first));
     VectorTest(GraphAlgorithms::depthFirstSearch(graph_, first));
 
     int second = Random::Int(0, std::get<1>(GetParam()) - 1);
@@ -35,7 +35,7 @@ TEST_P(AlgorithmsGT, Test1) {
 
 TEST_F(FileAlgGT, TestC1) {
     file_name_ = "c1.txt";
-    bfs_result_.emplace_back(0, std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+    bfs_result_.emplace_back(0, std::vector<int>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
     dfs_result_.emplace_back(0, std::vector<int>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
     lst_result_ = {0, 8, 7, 2, 4, 3, 5, 9, 10, 1, 6};
     spbv_result_.emplace_back(std::make_pair(1, 5), 40);

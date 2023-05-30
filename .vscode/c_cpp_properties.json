@@ -5,7 +5,10 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/src/submodules/cpp_libs/matrix",
-                "${workspaceFolder}/src/submodules/cpp_libs/ConsoleInterface"
+                "${workspaceFolder}/src/submodules/cpp_libs/ConsoleInterface",
+                "${workspaceFolder}/src/Submodules/Matrix",
+                "${workspaceFolder}/src/Submodules/Utility",
+                "${workspaceFolder}/src/Submodules/ConsoleInterface"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

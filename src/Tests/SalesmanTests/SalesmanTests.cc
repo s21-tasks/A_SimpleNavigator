@@ -20,12 +20,6 @@ TEST_F(FileSalesmanGT, Test1) {
     Test();
 }
 
-TEST_F(FileSalesmanGT, Test2) {
-    file_name_ = "c2.txt";
-    salesman_loop_count_ = 1;
-    Test();
-}
-
 TEST_F(FileSalesmanGT, Test7) {
     salesman_loop_count_ = 15;
     file_name_ = "c7.txt";

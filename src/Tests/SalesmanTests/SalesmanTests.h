@@ -16,7 +16,7 @@ class AlgorithmsGT : public GT {
         void Test() {
 
             std::vector<TsmResult> results{GraphAlgorithms::BnBSolveSalesmanProblem(graph_),
-                                        // GraphAlgorithms::GeneticSolveSalesmanProblem(graph_),
+                                        GraphAlgorithms::GeneticSolveSalesmanProblem(graph_),
                                         GraphAlgorithms::solveTravelingSalesmanProblem(graph_)};
 
             for (int k = 0; k < results.size(); ++k) {

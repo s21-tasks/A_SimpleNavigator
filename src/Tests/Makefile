@@ -1,21 +1,25 @@
 
+all: algorithms graph salesman
+
 algorithms:
-	@mkdir -p build
-	@cmake -B"build" AlgorithmsTests/.
-	@$(MAKE) -C build
-	./build/AlgorithmsTests
+	@mkdir -p AlgorithmsTests/build
+	@cmake -B"AlgorithmsTests/build" AlgorithmsTests/.
+	@$(MAKE) -C AlgorithmsTests/build
+	./AlgorithmsTests/build/AlgorithmsTests
 
 graph:
-	@mkdir -p build
-	@cmake -B"build" GraphTests/.
-	@$(MAKE) -C build
-	./build/GraphTests
+	@mkdir -p GraphTests/build
+	@cmake -B"GraphTests/build" GraphTests/.
+	@$(MAKE) -C GraphTests/build
+	./GraphTests/build/GraphTests
 
 salesman:
-	@mkdir -p build
-	@cmake -B"build" SalesmanTests/.
-	@$(MAKE) -C build
-	./build/SalesmanTests
+	@mkdir -p SalesmanTests/build
+	@cmake -B"SalesmanTests/build" SalesmanTests/.
+	@$(MAKE) -C SalesmanTests/build
+	./SalesmanTests/build/SalesmanTests
 
 clean:
-	rm -rf build
+	rm -rf SalesmanTests/build
+	rm -rf GraphTests/build
+	rm -rf AlgorithmsTests/build

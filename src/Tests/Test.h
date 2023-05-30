@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 #include <tuple>
-#include "m_sstr.h"
+#include "M_sstr.h"
 #include "Graph.h"
 
 namespace s21 {
@@ -17,7 +17,7 @@ class GT : public testing::TestWithParam<std::tuple<bool, int, float, int>> {
                     std::get<2>(GetParam()), std::get<3>(GetParam())) {}
         
         static std::string FilePath(const std::string &file_name) {
-            return SStr::RelativePath(__FILE__, "/materials/test_files") + '/' + file_name;
+            return SStr::RelativePath(__FILE__, "/test_files") + '/' + file_name;
         }
 };
 

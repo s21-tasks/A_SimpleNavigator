@@ -8,9 +8,6 @@ find_package(GTest)
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-add_subdirectory(../../submodules/cpp_libs/matrix ${CMAKE_BINARY_DIR}/submodules/cpp_libs/matrix)
-add_subdirectory(../../submodules/cpp_libs/utility ${CMAKE_BINARY_DIR}/submodules/cpp_libs/utility)
-
 add_subdirectory(../../GraphAlgorithms ${CMAKE_BINARY_DIR}/GraphAlgorithms)
 
 add_executable(${PROJECT_NAME}
