@@ -18,9 +18,7 @@ s21_graph_algorithms.a:
 	@$(MAKE) -C GraphAlgorithms/build s21_graph_algorithms.a
 
 interface:
-	mkdir -p ../build
-	@cmake -B"../build" .
-	@$(MAKE) -C ../build
+	mkdir -p ../build ; cmake -B"../build" . ;$(MAKE) -C ../build
 
 dist:
 	tar czf ../dist.tar *

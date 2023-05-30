@@ -15,7 +15,7 @@ std::vector<int> GraphAlgorithms::depthFirstSearch(const Graph &graph, const int
 }
 
 void GraphAlgorithms::depthSearch(const Graph &graph, const int vertex, std::vector<int>& visited) {
-  std::stack<int> st;
+  stack<int> st;
   visited.push_back(vertex);
   for (int i = graph.Size()-1; i >=0 ; --i) {
     if (graph(vertex,i))
@@ -33,7 +33,8 @@ std::vector<int> GraphAlgorithms::breadthFirstSearch(const Graph &graph, const i
   if (startVertex < 0 || startVertex >= graph.Size()) {
     throw std::invalid_argument("Incorrect start vertex: " + std::to_string(startVertex));
   }
-  std::queue<int> q;
+
+  queue<int> q;
   std::vector<int> visited{startVertex};
   std::vector<bool> visited_bool(graph.Size(), false);
   q.push(startVertex);

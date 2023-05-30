@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(../Graph ${CMAKE_BINARY_DIR}/Graph)
+add_subdirectory(../Submodules/Containers/src ${CMAKE_BINARY_DIR}/containers)
 
 set(SOURCES
         GraphAlgorithms.cc
@@ -27,3 +28,4 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 target_link_libraries(${PROJECT_NAME} PUBLIC s21_graph.a)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(${PROJECT_NAME} PUBLIC containers.a)

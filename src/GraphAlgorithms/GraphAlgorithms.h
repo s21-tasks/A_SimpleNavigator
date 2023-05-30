@@ -6,6 +6,7 @@
 #include "AntColonyAlgorithm/AntColonyAlgorithm.h"
 #include "BnBAlgorithm/BnBAlgorithm.h"
 #include "Helpers.h"
+//#include "containers.a" TODO здесь доделать
 
 namespace s21 {
 /**
