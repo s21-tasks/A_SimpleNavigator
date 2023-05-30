@@ -85,6 +85,8 @@ class stack {
     head_ = tmp;
   }
 
+  inline bool empty() { return !head_;}
+
   void pop() {
     if (size_ == 0 || head_ == nullptr) {
       return;
