@@ -41,3 +41,7 @@ clean: clean_graph clean_algs
 	rm -rf ../build
 	@$(MAKE) clean -C Tests
 	
+dvi:
+	mkdir -p documentation
+	@doxygen Doxyfile && mv html documentation
+	@open documentation/html/index.html
