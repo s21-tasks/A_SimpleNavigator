@@ -16,9 +16,6 @@ std::vector<int> GraphAlgorithms::depthFirstSearch(const Graph &graph,
   return visited;
 }
 
-void GraphAlgorithms::depthSearch(const Graph &graph, const int vertex,
-                                  std::vector<int> &visited) {
-  std::stack<int> st;
 void GraphAlgorithms::depthSearch(const Graph &graph, const int vertex, std::vector<int>& visited) {
   stack<int> st;
   visited.push_back(vertex);

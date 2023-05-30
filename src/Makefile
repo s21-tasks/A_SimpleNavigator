@@ -18,7 +18,8 @@ s21_graph_algorithms.a:
 	@$(MAKE) -C GraphAlgorithms/build s21_graph_algorithms.a
 
 interface:
-	mkdir -p ../build ; cmake -B"../build" . ;$(MAKE) -C ../build
+	mkdir -p ../build ; cmake -B"../build" .
+	$(MAKE) -C ../build
 
 dist:
 	tar czf ../dist.tar *
@@ -43,3 +44,8 @@ dvi:
 	mkdir -p documentation
 	@doxygen Doxyfile && mv html documentation
 	@open documentation/html/index.html
+
+clang:
+	cp ../matetials/linters/.clang-format .
+	find . -name "*.cс" -o -name "*.h" | xargs clang-format -i
+

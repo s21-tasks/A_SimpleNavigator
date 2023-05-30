@@ -2,12 +2,13 @@
 
 #include <algorithm>
 
+#include "../submodules/Containers/src/s21_containers.hpp"
 #include "AntColonyAlgorithm/AntColonyAlgorithm.h"
 #include "BnBAlgorithm/BnBAlgorithm.h"
 #include "GeneticAlgorithm/GeneticAlgorithm.h"
 #include "Graph.h"
 #include "Helpers.h"
-//#include "containers.a" TODO здесь доделать
+// #include "containers.hpp"
 
 namespace s21 {
 /**
