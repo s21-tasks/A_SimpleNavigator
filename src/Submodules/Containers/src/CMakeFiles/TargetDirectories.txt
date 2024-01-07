@@ -1,0 +1,3 @@
+/Users/ivan/Projects/CPP/simplenavigator/src/submodules/Containers/src/CMakeFiles/containers.a.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/submodules/Containers/src/CMakeFiles/edit_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/submodules/Containers/src/CMakeFiles/rebuild_cache.dir

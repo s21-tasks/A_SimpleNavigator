@@ -1,0 +1,89 @@
+Performing C++ SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/CMakeScratch/TryCompile-LPCbT7
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_74bdb/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_74bdb.dir/build.make CMakeFiles/cmTC_74bdb.dir/build
+Building CXX object CMakeFiles/cmTC_74bdb.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -lgtest -std=c++17  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -MD -MT CMakeFiles/cmTC_74bdb.dir/src.cxx.o -MF CMakeFiles/cmTC_74bdb.dir/src.cxx.o.d -o CMakeFiles/cmTC_74bdb.dir/src.cxx.o -c /Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/CMakeScratch/TryCompile-LPCbT7/src.cxx
+clang: warning: -lgtest: 'linker' input unused [-Wunused-command-line-argument]
+Linking CXX executable cmTC_74bdb
+/opt/homebrew/Cellar/cmake/3.25.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_74bdb.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++  -lgtest -std=c++17  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_74bdb.dir/src.cxx.o -o cmTC_74bdb 
+ld: library not found for -lgtest
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[1]: *** [cmTC_74bdb] Error 1
+make: *** [cmTC_74bdb/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/CMakeScratch/TryCompile-8F8us2
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_59b15/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_59b15.dir/build.make CMakeFiles/cmTC_59b15.dir/build
+Building CXX object CMakeFiles/cmTC_59b15.dir/CheckFunctionExists.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++   -lgtest -std=c++17 -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -MD -MT CMakeFiles/cmTC_59b15.dir/CheckFunctionExists.cxx.o -MF CMakeFiles/cmTC_59b15.dir/CheckFunctionExists.cxx.o.d -o CMakeFiles/cmTC_59b15.dir/CheckFunctionExists.cxx.o -c /Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/CMakeScratch/TryCompile-8F8us2/CheckFunctionExists.cxx
+clang: warning: -lgtest: 'linker' input unused [-Wunused-command-line-argument]
+Linking CXX executable cmTC_59b15
+/opt/homebrew/Cellar/cmake/3.25.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59b15.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++  -lgtest -std=c++17 -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_59b15.dir/CheckFunctionExists.cxx.o -o cmTC_59b15  -lpthreads 
+ld: library not found for -lgtest
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[1]: *** [cmTC_59b15] Error 1
+make: *** [cmTC_59b15/fast] Error 2
+
+
+
+Determining if the function pthread_create exists in the pthread failed with the following output:
+Change Dir: /Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/CMakeScratch/TryCompile-GrUbQH
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_c77d6/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_c77d6.dir/build.make CMakeFiles/cmTC_c77d6.dir/build
+Building CXX object CMakeFiles/cmTC_c77d6.dir/CheckFunctionExists.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++   -lgtest -std=c++17 -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -MD -MT CMakeFiles/cmTC_c77d6.dir/CheckFunctionExists.cxx.o -MF CMakeFiles/cmTC_c77d6.dir/CheckFunctionExists.cxx.o.d -o CMakeFiles/cmTC_c77d6.dir/CheckFunctionExists.cxx.o -c /Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/CMakeScratch/TryCompile-GrUbQH/CheckFunctionExists.cxx
+clang: warning: -lgtest: 'linker' input unused [-Wunused-command-line-argument]
+Linking CXX executable cmTC_c77d6
+/opt/homebrew/Cellar/cmake/3.25.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c77d6.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++  -lgtest -std=c++17 -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_c77d6.dir/CheckFunctionExists.cxx.o -o cmTC_c77d6  -lpthread 
+ld: library not found for -lgtest
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[1]: *** [cmTC_c77d6] Error 1
+make: *** [cmTC_c77d6/fast] Error 2
+
+
+
+Determining if compiler accepts -pthread failed with the following output:
+Change Dir: /Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/CMakeScratch/TryCompile-67D32V
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_156ba/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_156ba.dir/build.make CMakeFiles/cmTC_156ba.dir/build
+Building CXX object CMakeFiles/cmTC_156ba.dir/CheckForPthreads.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++   -lgtest -std=c++17  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -MD -MT CMakeFiles/cmTC_156ba.dir/CheckForPthreads.cxx.o -MF CMakeFiles/cmTC_156ba.dir/CheckForPthreads.cxx.o.d -o CMakeFiles/cmTC_156ba.dir/CheckForPthreads.cxx.o -c /Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/CMakeScratch/TryCompile-67D32V/CheckForPthreads.cxx
+clang: warning: -lgtest: 'linker' input unused [-Wunused-command-line-argument]
+Linking CXX executable cmTC_156ba
+/opt/homebrew/Cellar/cmake/3.25.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_156ba.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++  -lgtest -std=c++17  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_156ba.dir/CheckForPthreads.cxx.o -o cmTC_156ba  -pthread 
+ld: library not found for -lgtest
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[1]: *** [cmTC_156ba] Error 1
+make: *** [cmTC_156ba/fast] Error 2
+
+
+

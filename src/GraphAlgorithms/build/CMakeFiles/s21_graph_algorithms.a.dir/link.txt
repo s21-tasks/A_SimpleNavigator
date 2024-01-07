@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc s21_graph_algorithms.a CMakeFiles/s21_graph_algorithms.a.dir/GraphAlgorithms.cc.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib s21_graph_algorithms.a

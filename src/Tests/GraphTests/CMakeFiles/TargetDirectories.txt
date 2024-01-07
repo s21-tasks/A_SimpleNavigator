@@ -1,0 +1,13 @@
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/GraphTests.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/edit_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/CMakeFiles/rebuild_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/Graph/CMakeFiles/test.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/Graph/CMakeFiles/s21_graph.a.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/Graph/CMakeFiles/edit_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/Graph/CMakeFiles/rebuild_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/matrix/CMakeFiles/matrix.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/matrix/CMakeFiles/edit_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/matrix/CMakeFiles/rebuild_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/utility/CMakeFiles/utility.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/utility/CMakeFiles/edit_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/Tests/GraphTests/utility/CMakeFiles/rebuild_cache.dir

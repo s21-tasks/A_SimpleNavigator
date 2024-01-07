@@ -1,0 +1,12 @@
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/CMakeFiles/s21_graph_algorithms.a.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/CMakeFiles/edit_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/CMakeFiles/rebuild_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/Graph/CMakeFiles/s21_graph.a.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/Graph/CMakeFiles/edit_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/Graph/CMakeFiles/rebuild_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/matrix/CMakeFiles/matrix.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/matrix/CMakeFiles/edit_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/matrix/CMakeFiles/rebuild_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/utility/CMakeFiles/utility.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/utility/CMakeFiles/edit_cache.dir
+/Users/ivan/Projects/CPP/simplenavigator/src/GraphAlgorithms/build/utility/CMakeFiles/rebuild_cache.dir
